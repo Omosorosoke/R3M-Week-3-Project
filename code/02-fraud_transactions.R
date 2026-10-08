@@ -19,7 +19,7 @@ data_fraud_transactions <- read_rds("data/fraud_transactions_cleaned.rds")
 
 # Count the number of unique values in selected columns of interest.
 # This provides an indication of the level of variation in each variable.
-# This may provide insights that will guide the focus of the analysis.
+# This also may provide insights that will guide the focus of the analysis.
 data_fraud_transactions |>
   summarise(across(
     c(
@@ -38,17 +38,20 @@ data_fraud_transactions |>
     .names = "{.col}"
   )) |>
   pivot_longer(
+    # This will return the object in a vertical tidy format.
     everything(),
     names_to = "items",
     values_to = "unique_values",
-  ) # Customer ID has 1092. It may generally not be useful to analyse customer_id except for very specific purpose.
+  ) # Customer ID has 1092 unique values. It may generally not be useful to analyse customer_id except for very specific purpose.
 
 # Check for missing values and address
 data_fraud_transactions |>
   summarise(
-    across(everything(), ~ sum(is.na(.x)))
+    across(everything(), ~ sum(is.na(.x))) # Total the missing values in each column
   ) |>
   pivot_longer(
+    # This will return the object in a vertical tidy format.
+    everything(),
     everything(),
     names_to = "variables",
     values_to = "missing_values"
@@ -95,27 +98,29 @@ data_fraud_transactions |>
   autofit() |>
   add_header_lines("Fraud incidence by currency", top = TRUE) |> # Header title
   align(part = "header", align = 'center') |> # Align header
-  bg(bg = "#d3d3d337", i = 2, part = "header") |> # Color backgroiund for style
+  bg(bg = "#d3d3d337", i = 2, part = "header") |> # Color background for style
   bold(part = "header") |>
   bg(bg = "#d3d3d337", part = "body", i = 2) |>
   color(i = 1, part = "body", color = "#088F8F") |> # Use color to emphasize finding
   bold(i = 1, part = "body", j = c(1, 2, 3, 5))
-#The majority of fraudulent transactions were conducted in EUR, with an average transaction value of approximately EUR 60.
-#The total value of fraudulent transactions per currency is approximately EUR 1,200, GBP 429, and USD 73.
-#The fraud rate varies by currency. EUR has the highest fraud rate at 1.5%, compared with GBP and USD.
+#Fraud rates vary by currency, with EUR recording the highest fraud rate at 1.5%, compared with GBP and USD.
+#EUR accounted for the majority of fraudulent transactions, with an average fraudulent transaction value of approximately EUR 60.
+#The total value of fraudulent transactions was approximately 1,200 EUR, 429 GBP, and 73 USD for EUR, GBP, and USD transactions, respectively.
 
 # (3) What is the daily fraud rate?
-# Fraud incidence and trend
 
+# Fraud incidence and trend
 # Set up variables for plot title
 plot_title_fraud_incidence_1 <- "one"
 plot_title_fraud_incidence_2 <- "two"
+
+# Dynamic plot title
 plot_title_fraud_incidence <- marquee_glue(
   "On days when fraud occurs,  {.#088F8F **{plot_title_fraud_incidence_1}** } or {.#088F8F **{plot_title_fraud_incidence_2 }** } cases are typical."
-) # Dynamic plot title
+)
 
 
-# Plot chart
+# Plot the chart
 data_fraud_transactions |>
   mutate(
     day_of_the_month = day(transaction_date)
@@ -201,19 +206,15 @@ data_fraud_transactions |>
 # Fraud incidence in a given month ranges between one and two per day with three being an outlier.
 
 ## Customer risk analysis
-# Which customer age groups experience the most fraud?
-# Are VIP customers more or less likely to experience fraud?
-# Does customer tenure reduce fraud risk?
-# Which customers generate the highest fraud losses?
 
-# (4) Which customer age groups experience the most fraud?
+# (4) Which customer age groups have the highest incidence of fraud?
 data_fraud_transactions |>
   filter(actual_fraud == "Fraudulent") |>
   count(customer_age, sort = TRUE) |>
-  arrange(desc(customer_age)) # It appears fraud incident does not differ by customers' ages. Customers of all agaes  are eqaully likely to experience transaction fraud.
-# The three largest fraud cases by transaction value involved card payments. Further analysis is required to determine whether card payments are more susceptible to fraud than other payment methods.
+  arrange(desc(customer_age)) #Fraud incidence does not appear to vary substantially by customer age. Customers across all age groups appear to be similarly likely to experience transaction fraud.
+# The three largest fraudulent transactions by transaction value involved card payments. However, further analysis is required to determine whether card payments are more susceptible to fraud than other payment methods.
 
-# (5) Are VIP customers more or less likely to experience fraud?
+# Are VIP customers more or less likely to experience fraud than non-VIP customers?
 data_fraud_transactions |>
   filter(
     actual_fraud == "Fraudulent"
@@ -224,16 +225,46 @@ data_fraud_transactions |>
     total_fraud_loss = sum(amount),
   ) # No transactions involving VIP customers were identified as fraudulent; all fraudulent transactions involved non-VIP customers.
 
-# (6) Does customer tenure reduce fraud risk?
+# (6) Is customer tenure associated with a lower risk of fraud?
 average_tenure <- mean(data_fraud_transactions$customer_tenure_days)
 
 data_fraud_transactions |>
   mutate(
-    diff_in_tenure = customer_tenure_days > average_tenure
+    diff_in_tenure = customer_tenure_days > average_tenure,
+    tenure_category = if_else(
+      customer_tenure_days > average_tenure,
+      "Long tenure",
+      "Short tenure"
+    )
   ) |>
-  View()
-filter(actual_fraud == "Fraudulent") |>
-  count(diff_in_tenure) # Fraud incidence appears to vary by customer tenure. Customers with tenure below the average are more likely to have experienced fraud. Specifically, 60% of customers with shorter tenure were victims of fraud, compared with 40% of customers with longer tenure.
+  filter(actual_fraud == "Fraudulent") |>
+  count(diff_in_tenure, tenure_category, name = 'fraud_count') |>
+  mutate(prop = percent(fraud_count / sum(fraud_count))) |>
+  select(-diff_in_tenure) |>
+  flextable() |>
+  set_header_labels(
+    values = c(
+      tenure_category = 'Tenure category',
+      fraud_count = "Fraud count",
+      prop = "Proportion"
+    )
+  ) |>
+  set_caption(
+    caption = as_paragraph(
+      as_chunk(
+        "Shorter tenure days are associated with higher fraud incidence",
+        props = fp_text_default(font.size = 12, bold = TRUE)
+      )
+    )
+  ) |>
+  autofit() |>
+  hline(
+    i = 1,
+    part = "header",
+    border = fp_border(width = 0.5)
+  ) |>
+  color(part = 'body', color = '#088F8F', i = 1) # Fraud incidence appears to vary by customer tenure. Customers with tenure below the average are more likely to have experienced fraud.
+# Specifically, 60% of customers with shorter tenure were victims of fraud, compared with 40% of customers with longer tenure.
 
 # (7) Which five customers experienced the highest fraud losses?
 data_fraud_transactions |>
@@ -249,21 +280,6 @@ data_fraud_transactions |>
     customer_tenure_days
   ) |>
   flextable() |>
-  add_header_lines(
-    values = 'Top fraud losses by customers profile',
-    top = TRUE
-  ) |>
-  align(
-    part = 'header',
-    i = 1,
-    align = 'center'
-  ) |>
-  autofit() |>
-  align(
-    part = "body",
-    align = "center"
-  ) |>
-  width(j = 7, unit = 'mm', width = 0.1) |>
   set_header_labels(
     customer_id = 'Customer ID',
     customer_age = 'Customer age',
@@ -273,6 +289,12 @@ data_fraud_transactions |>
     payment_method = 'Payment',
     customer_tenure_days = 'Tenure'
   ) |>
+  set_caption(
+    caption = as_paragraph(as_chunk(
+      "The single highest loss by a customer is EUR 216.80 ",
+      props = fp_text_default(font.size = 12, bold = TRUE)
+    ))
+  ) |>
   theme_zebra(
     even_body = "#d3d3d337",
     odd_body = "transparent",
@@ -280,9 +302,10 @@ data_fraud_transactions |>
     even_header = "#d3d3d337"
   ) |>
   color(part = 'body', i = 1, color = '#088F8F') |>
-  hline(part = "body", i = 5, border = fp_border(width = 0.5)) |>
+  hline(part = "body", i = 5, border = fp_border(width = 1)) |>
   hline_top(part = "header", border = fp_border(width = 1)) |>
-  hline_top(part = "body", border = fp_border(width = 0.5))
+  hline_top(part = "body", border = fp_border(width = 0.5)) |>
+  autofit()
 #It is also evident that the highest-value fraud involved card payments. Does this suggest that card payments are more susceptible to fraud?
 
 ## Digital properties and fraud incidence.
@@ -333,7 +356,7 @@ data_fraud_transactions |>
   ) +
   labs(
     title = plot_title_payment_method,
-    subtitle = "Making it the riskiest transaction payment method"
+    subtitle = "Making it the riskiest transaction payment method."
   ) +
   theme(
     plot.title = element_marquee(
@@ -491,11 +514,17 @@ data_fraud_transactions_cross_border |>
       prop = "Prop."
     )
   ) |>
-  autofit() |>
   color(i = 1, part = "body", color = '#088F8F') |>
-  add_header_lines(
-    values = "Majority of fradulent transactions are cross border"
-  )
+  set_caption(
+    as_paragraph(
+      as_chunk(
+        "Majority of fradulent transactions are cross border",
+        props = fp_text_default(font.size = 12, bold = TRUE)
+      )
+    )
+  ) |>
+  autofit()
+
 # The majority of fraudulent transactions (88%) are cross-border transactions.
 # These are transactions in which the IP country differs from the billing country and the billing country differs from the shipping country.
 
@@ -592,14 +621,8 @@ data_fraud_transactions_cross_border |>
     plot.title.position = "plot"
   ) +
   scale_x_continuous(
-    labels = percent_format() # This format the x-axis text to % but I decided to leave the axis not visible.
+    labels = percent_format() # This formats the x-axis text to % but I decided to leave the axis not visible.
   )
-
-# Which billing country recorded the highest fraud incidence?
-acca_data_rds |>
-  filter(actual_fraud == "Fraudulent") |>
-  count(billing_country, sort = TRUE) |>
-  head(10) # Great Britain and Ireland
 
 # Merchant Risk Analysis
 # (11) ) Does fraud incidence vary by merchant risk score?
@@ -751,7 +774,7 @@ data_fraud_transactions |>
     axis.title.y = element_text(
       face = "plain",
       size = 13,
-      vjust = 1.8,
+      vjust = 2,
       hjust = 0.5
     ),
     plot.title = element_marquee(
@@ -769,10 +792,3 @@ data_fraud_transactions |>
     ),
     plot.title.position = "plot"
   ) # Fraudulent transations are more prevalent in marketplaces than in other channels
-
-
-game_films <- readr::read_csv(
-  'https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2026/2026-06-09/game_films.csv'
-)
-View(game_films)
-?(quade.test())
