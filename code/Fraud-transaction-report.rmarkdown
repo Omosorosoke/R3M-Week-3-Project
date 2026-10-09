@@ -300,7 +300,7 @@ n = "Fraud count"
 
 
 ## (5) Are VIP customers more or less likely to experience fraud than non-VIP customers?
-No transactionsinvolving VIP customers were identified as fraudulent; all fraudulent transactions involved non-VIP customers.
+No transactions involving VIP customers were identified as fraudulent; all fraudulent transactions involved non-VIP customers.
 
 ```{r}
 #| Label: VIP-customer-and-fraud-experince
