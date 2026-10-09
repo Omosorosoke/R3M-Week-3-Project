@@ -1,4 +1,17 @@
-# Load packages ----------------------------------------------------------
+---
+title: "Fraud Transaction Report"
+format: html
+author : "Kolawole Ojo"
+execute: 
+  echo: false
+  message: false
+  warning: false
+  
+---
+
+
+```{r}
+# | label: set-up
 library(tidyverse)
 library(gt)
 library(gtExtras)
@@ -11,14 +24,18 @@ library(ggrepel)
 library(flextable)
 library(gtExtras)
 library(officer) # Work with flexatable
+library(here)
+```
 
 
-# Import data ------------------------------------------------------------
+```{r}
+#| label: Import-data
+data_fraud_transactions <- read_rds(here("data/fraud_transactions_cleaned.rds"))
+```
 
-data_fraud_transactions <- read_rds(
-  "C:/Users/user/Documents/R3M/R3M-Week-3-Project/data/fraud_transactions_cleaned.rds"
-)
-
+```{r}
+#| label: Check-variation-in-column-values
+#| echo: false
 # Count the number of unique values in selected columns of interest.
 # This provides an indication of the level of variation in each variable.
 # This also may provide insights that will guide the focus of the analysis.
@@ -46,6 +63,12 @@ data_fraud_transactions |>
     values_to = "unique_values",
   ) # Customer ID has 1092 unique values. It may generally not be useful to analyse customer_id except for very specific purpose.
 
+```
+
+# The device_fingerprint has the highest number of missing values, followed by the merchant risk scores.
+```{r}
+#| Label: Missing-values
+#| echo: false
 # Check for missing values and address
 data_fraud_transactions |>
   summarise(
@@ -54,16 +77,22 @@ data_fraud_transactions |>
   pivot_longer(
     # This will return the object in a vertical tidy format.
     everything(),
-    everything(),
     names_to = "variables",
     values_to = "missing_values"
   ) |>
   arrange(desc(missing_values)) # The device_fingerprint has the highest number of missing values, followed by the merchant risk scores.
+```
 
-View(data_fraud_transactions)
 
-### Tweleve (12) Business Questions and their  Analyses -------------------------------------------------
 
+# Tweleve (12) Business Questions and their  Analyses -------------------------------------------------
+
+
+## (1) What proportion of total transactions are fraudulent?
+Fraud rates vary by currency, with EUR recording the highest fraud rate at 1.5%, compared with GBP and USD.
+EUR accounted for the majority of fraudulent transactions, with an average fraudulent transaction value of approximately EUR 60.
+The total value of fraudulent transactions was approximately 1,200 EUR, 429 GBP, and 73 USD for EUR, GBP, and USD transactions, respectively.
+```{r}
 # (1) What proportion of total transactions are fraudulent?
 
 # Proportion of fraudulent transactions.
@@ -108,9 +137,13 @@ data_fraud_transactions |>
 #Fraud rates vary by currency, with EUR recording the highest fraud rate at 1.5%, compared with GBP and USD.
 #EUR accounted for the majority of fraudulent transactions, with an average fraudulent transaction value of approximately EUR 60.
 #The total value of fraudulent transactions was approximately 1,200 EUR, 429 GBP, and 73 USD for EUR, GBP, and USD transactions, respectively.
+```
+
+
 
 # (3) What is the daily fraud rate?
-
+```{r}
+# | echo: false
 # Fraud incidence and trend
 # Set up variables for plot title
 plot_title_fraud_incidence_1 <- "one"
@@ -121,7 +154,12 @@ plot_title_fraud_incidence <- marquee_glue(
   "On days when fraud occurs,  {.#088F8F **{plot_title_fraud_incidence_1}** } or {.#088F8F **{plot_title_fraud_incidence_2 }** } cases are typical."
 )
 
+```
 
+
+One or two cases of fraud incidence per day are typical, with three cases on a single day being an outlier."
+Fraud incidence in a given month ranges between one and two per day with three being an outlier.
+```{r}
 # Plot the chart
 data_fraud_transactions |>
   mutate(
@@ -207,15 +245,30 @@ data_fraud_transactions |>
 # One or two cases of fraud incidence per day are typical, with three cases on a single day being an outlier."
 # Fraud incidence in a given month ranges between one and two per day with three being an outlier.
 
-## Customer risk analysis
+```
 
+
+## Customer risk analysis
+Fraud incidence does not appear to vary substantially by customer age. Customers across all age groups appear to be similarly likely to experience transaction fraud.
+
+The three largest fraudulent transactions by transaction value involved card payments. However, further analysis is required to determine whether card payments are more susceptible to fraud than other payment methods.
+```{r}
+#| echo: false
 # (4) Which customer age groups have the highest incidence of fraud?
 data_fraud_transactions |>
   filter(actual_fraud == "Fraudulent") |>
   count(customer_age, sort = TRUE) |>
   arrange(desc(customer_age)) #Fraud incidence does not appear to vary substantially by customer age. Customers across all age groups appear to be similarly likely to experience transaction fraud.
 # The three largest fraudulent transactions by transaction value involved card payments. However, further analysis is required to determine whether card payments are more susceptible to fraud than other payment methods.
+```
 
+
+# Are VIP customers more or less likely to experience fraud than non-VIP customers?
+No transactions involving VIP customers were identified as fraudulent; all fraudulent transactions involved non-VIP customers.
+
+```{r}
+#| Label: VIP-customer-and-fraud-experince
+#| echo: false
 # Are VIP customers more or less likely to experience fraud than non-VIP customers?
 data_fraud_transactions |>
   filter(
@@ -227,6 +280,16 @@ data_fraud_transactions |>
     total_fraud_loss = sum(amount),
   ) # No transactions involving VIP customers were identified as fraudulent; all fraudulent transactions involved non-VIP customers.
 
+```
+
+
+# (6) Is customer tenure associated with a lower risk of fraud?
+Fraud incidence appears to vary by customer tenure. Customers with tenure below the average are more likely to have experienced fraud.
+
+Specifically, 60% of customers with shorter tenure were victims of fraud, compared with 40% of customers with longer tenure.
+```{r}
+#| Label: customer-tenure-and-fraud-experience
+#| echo: false
 # (6) Is customer tenure associated with a lower risk of fraud?
 average_tenure <- mean(data_fraud_transactions$customer_tenure_days)
 
@@ -268,6 +331,15 @@ data_fraud_transactions |>
   color(part = 'body', color = '#088F8F', i = 1) # Fraud incidence appears to vary by customer tenure. Customers with tenure below the average are more likely to have experienced fraud.
 # Specifically, 60% of customers with shorter tenure were victims of fraud, compared with 40% of customers with longer tenure.
 
+```
+
+
+# (7) Which five customers experienced the highest fraud losses?
+
+It is also evident that the highest-value fraud involved card payments. Does this suggest that card payments are more susceptible to fraud?
+
+```{r}
+#| Label: Customers-and-fraud-incidence
 # (7) Which five customers experienced the highest fraud losses?
 data_fraud_transactions |>
   filter(actual_fraud == "Fraudulent") |>
@@ -309,10 +381,15 @@ data_fraud_transactions |>
   hline_top(part = "body", border = fp_border(width = 0.5)) |>
   autofit()
 #It is also evident that the highest-value fraud involved card payments. Does this suggest that card payments are more susceptible to fraud?
+```
+
 
 ## Digital properties and fraud incidence.
-# (8) Which payment methods have the highest incidence of fraud?
+### (8) Which payment methods have the highest incidence of fraud?
 
+Card payment transactions recorded the highest fraud.
+
+```{r}
 # Set up plot title variables.
 plot_title_variable_payment_method <- "Card"
 plot_title_payment_method <- marquee_glue(
@@ -397,10 +474,14 @@ data_fraud_transactions |>
     axis.title.x = element_blank()
   ) # Card payment transactions recorded the highest fraud.
 
+```
 
+
+## Web channel transations reported the highest fraud.
+```{r}
 # (9) Which transactions channels have the highest fraud rates?
-
 # Set up the plot title variables
+
 plot_title_variable_channel <- "Web"
 plot_title_channel <- marquee_glue(
   "{.#088F8F **{plot_title_variable_channel}** }  transactions channel recorded the highest fraud cases."
@@ -484,10 +565,24 @@ data_fraud_transactions |>
       hjust = 0.5
     ),
   ) # Web channel transations reported the highest fraud.
+```
+
 
 
 ## Geographic locations and  Fraud Patterns.
-# (10) Are cross-border transactions riskier?
+### (10) Are cross-border transactions riskier?
+
+I defined a cross-border transaction as one where the 
+ip_country, billing_country, and shipping_country differ.
+
+
+## Geographic locations and  Fraud Patterns.
+(10) Are cross-border transactions riskier?
+The majority of fraudulent transactions (88%) are cross-border transactions.
+These are transactions in which the IP country differs from the billing country and the billing country differs from the shipping country.
+```{r}
+
+
 # I defined a cross-border transaction as one where the ip_country, billing_country, and shipping_country differ.
 
 data_fraud_transactions_cross_border <- data_fraud_transactions |>
@@ -526,12 +621,15 @@ data_fraud_transactions_cross_border |>
     )
   ) |>
   autofit()
+```
 
-# The majority of fraudulent transactions (88%) are cross-border transactions.
-# These are transactions in which the IP country differs from the billing country and the billing country differs from the shipping country.
+
 
 # (11) Which are the top billing countries for fraudulent transaction?
 
+
+```{r}
+#| Label: Plot-title
 # variables for the plot title
 billing_country_high_risk_1 <- "Great Britain (GB)"
 billing_country_high_risk_2 <- "Ireland (IE)"
@@ -542,261 +640,4 @@ plot_title <- marquee_glue(
      for fraudulent transactions."
 )
 
-
-data_fraud_transactions_cross_border |>
-  filter(actual_fraud == "Fraudulent") |>
-  summarise(
-    fraud_incidence = n(),
-    .by = billing_country
-  ) |>
-  mutate(
-    prop = fraud_incidence / sum(fraud_incidence),
-  ) |>
-  mutate(
-    billing_country_risk = if_else(
-      billing_country %in% c("GB", "IE"),
-      "High risk",
-      "Risky"
-    )
-  ) |>
-  mutate(
-    billing_country = fct_reorder(billing_country, prop, .desc = FALSE)
-  ) |>
-  ggplot(
-    aes(
-      y = billing_country,
-      x = prop,
-      fill = billing_country_risk,
-      label = percent(prop)
-    ) # This turns the prop doubles into percentage values
-  ) +
-  geom_col() +
-  scale_fill_manual(
-    values = c('#088F8F', "#D3D3D3")
-  ) +
-  geom_text_repel(
-    hjust = 1.4,
-    color = "White",
-    size = 4,
-    fontface = "bold"
-  ) +
-  theme_minimal() +
-  labs(
-    title = plot_title,
-    subtitle = "They represent more than 50% of the total fraud losses.",
-  ) +
-  ylab("Billing country") +
-  theme(
-    panel.grid.minor.y = element_blank(),
-    panel.grid.major.y = element_blank(),
-    panel.grid.major.x = element_line(
-      linewidth = 0.3
-    ),
-    axis.text.x = element_blank(), #This is made invisble
-    axis.text.y = element_text(
-      face = "bold",
-      size = 11,
-      vjust = 1,
-      hjust = 1,
-      margin = NULL
-    ),
-    axis.title.x = element_blank(),
-    legend.position = 'none',
-    axis.title.y = element_text(
-      face = "plain",
-      size = 13,
-      vjust = 2,
-      hjust = 0.5
-    ),
-    plot.title = element_marquee(
-      width = 1,
-      size = 19,
-      vjust = 0,
-      margin = NULL,
-      lineheight = 1
-    ),
-    plot.subtitle = element_text(
-      size = 15,
-      vjust = 1,
-      lineheight = 1.5
-    ),
-    plot.title.position = "plot"
-  ) +
-  scale_x_continuous(
-    labels = percent_format() # This formats the x-axis text to % but I decided to leave the axis not visible.
-  )
-
-# Which billing country recorded the highest fraud incidence?
-data_fraud_transactions |>
-  filter(actual_fraud == "Fraudulent") |>
-  count(billing_country, sort = TRUE) |>
-  head(10) # Great Britain and Ireland
-
-# Merchant Risk Analysis
-# (11) ) Does fraud incidence vary by merchant risk score?
-
-# Set up plot title variable
-plot_title_boxplot_variabe <- "Fraudulent transactions"
-plot_title_box_plot <- marquee_glue(
-  "{.#6cabdd **{plot_title_boxplot_variabe}** }  are more prevalent with high-risk merchants."
-)
-
-# Plot chart
-data_fraud_transactions |>
-  ggplot(aes(x = actual_fraud, y = merchant_riskscore, color = actual_fraud)) +
-  geom_boxplot(
-    outlier.shape = 1,
-    outlier.color = "orange",
-    box.linewidth = 1,
-    outlier.fill = "orange",
-    whisker.linewidth = 1
-  ) +
-  theme_minimal() +
-  scale_color_manual(
-    values = c('#088F8F', "#6cabdd")
-  ) +
-  theme(
-    panel.grid.major.x = element_blank(),
-    panel.grid.major.y = element_line(
-      linewidth = 0.3
-    ),
-    panel.grid.minor.y = element_blank(),
-    #panel.grid.major.y = element_blank(),
-    axis.text.x = element_text(
-      face = "bold",
-      size = 11,
-      vjust = 1,
-      margin = NULL
-    ),
-    axis.text.y = element_text(
-      face = "bold",
-      size = 11,
-      vjust = 1,
-
-      margin = NULL
-    ),
-    axis.title.x = element_blank(),
-    legend.position = 'none',
-    axis.title.y = element_text(
-      face = "plain",
-      size = 13,
-      vjust = 3,
-      hjust = 0.5
-    ),
-    plot.title = element_marquee(
-      width = 1,
-      size = 18,
-      hjust = 0,
-      vjust = 1,
-      margin = NULL,
-      lineheight = 1
-    ),
-    plot.subtitle = element_text(
-      size = 14,
-      vjust = 1,
-      lineheight = 7
-    ),
-    plot.title.position = "plot"
-  ) +
-  ylab("Merchants' risk scores") +
-  labs(
-    title = plot_title_box_plot,
-    subtitle = "Low-risk merchants are less vulnerable."
-  ) # Fraud transactions are common with high-risk scores relative to non-fraudulent ones
-
-
-# (12) Which merchant categories have the highest fraud rates?
-
-# set up plot title variables.
-plot_title_merchant_category_marketplaces <- 'Marketplaces'
-plot_title_merchant_category_fashion <- 'fashion'
-plot_title_merchant_category <- marquee_glue(
-  " {.#088F8F **{plot_title_merchant_category_marketplaces}**} and {.#088F8F **{plot_title_merchant_category_fashion}** } merchants are the most susceptible to fraudulent transactions."
-)
-
-# Plot chart
-data_fraud_transactions |>
-  filter(actual_fraud == "Fraudulent") |>
-  count(
-    merchant_category,
-    actual_fraud,
-    sort = T,
-    name = "fraud_count"
-  ) |>
-  mutate(
-    merchant_category_risk = if_else(
-      merchant_category %in% c("marketplace", "fashion"),
-      "High-risk merchant",
-      "Risky merchant"
-    )
-  ) |>
-  ggplot(aes(
-    y = fct_reorder(merchant_category, fraud_count, .desc = F),
-    x = fraud_count,
-    fill = merchant_category_risk,
-    label = fraud_count
-  )) +
-  geom_col() +
-  theme_minimal() +
-  geom_text_repel(
-    hjust = 2,
-    color = "White",
-    size = 6,
-    fontface = "bold"
-  ) +
-  scale_fill_manual(
-    values = c('#088F8F', "#D3D3D3")
-  ) +
-  labs(
-    title = plot_title_merchant_category
-  ) +
-  ylab("Merchant category channels") +
-  scale_y_discrete(
-    labels = c(
-      "marketplace" = "Marketplace",
-      "fashion" = "Fashion",
-      "digital_goods" = "Digital goods",
-      "gaming" = "Gaming",
-      "electronics" = "Electronics",
-      "utilities" = "Utilities",
-      "telecoms" = "Telecoms",
-      "restaurants" = "Restaurants"
-    )
-  ) +
-  theme(
-    panel.grid.minor.y = element_blank(),
-    panel.grid.major.y = element_blank(),
-    panel.grid.major.x = element_line(
-      linewidth = 0.3
-    ),
-    axis.text.x = element_blank(),
-    axis.text.y = element_text(
-      face = "bold",
-      size = 12,
-      vjust = 1,
-      hjust = 1,
-      margin = NULL
-    ),
-    axis.title.x = element_blank(),
-    legend.position = 'none',
-    axis.title.y = element_text(
-      face = "plain",
-      size = 13,
-      vjust = 2,
-      hjust = 0.5
-    ),
-    plot.title = element_marquee(
-      width = 1,
-      size = 19,
-      hjust = 0,
-      vjust = 1,
-      margin = NULL,
-      lineheight = 1
-    ),
-    plot.subtitle = element_text(
-      size = 14,
-      vjust = 1,
-      lineheight = 7
-    ),
-    plot.title.position = "plot"
-  ) # Fraudulent transations are more prevalent in marketplaces than in other channels
+```
