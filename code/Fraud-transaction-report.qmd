@@ -33,6 +33,11 @@ library(here)
 data_fraud_transactions <- read_rds(here("data/fraud_transactions_cleaned.rds"))
 ```
 
+
+# Variables and their unique values.
+This will give an indication of the level of variation in each variable. This also may provide insights that will guide the focus of the analysis.
+
+Customer ID has 1092 unique values. It may generally not be useful to analyse this variable except for very specific purpose.
 ```{r}
 #| label: Check-variation-in-column-values
 #| echo: false
@@ -61,11 +66,17 @@ data_fraud_transactions |>
     everything(),
     names_to = "items",
     values_to = "unique_values",
-  ) # Customer ID has 1092 unique values. It may generally not be useful to analyse customer_id except for very specific purpose.
+  )|> arrange(desc(unique_values))|> flextable() |> 
+    set_header_labels(values = c(
+        items = "Items",
+        unique_values = "Unique values") ) |> autofit()# Customer ID has 1092 unique values. It may generally not be useful to analyse customer_id except for very specific purpose.
 
 ```
 
-# The device_fingerprint has the highest number of missing values, followed by the merchant risk scores.
+# Missing values accross columns
+The device_fingerprint has the highest number of missing values, followed by the merchant risk scores.
+
+The device_fingerprint has the highest number of missing values, followed by the merchant risk scores.
 ```{r}
 #| Label: Missing-values
 #| echo: false
@@ -80,7 +91,12 @@ data_fraud_transactions |>
     names_to = "variables",
     values_to = "missing_values"
   ) |>
-  arrange(desc(missing_values)) # The device_fingerprint has the highest number of missing values, followed by the merchant risk scores.
+  arrange(desc(missing_values)) |>
+  flextable() |>
+  set_header_labels(values = c(
+     variables = "Variables",
+    missing_values = "Missing values"
+  )) # The device_fingerprint has the highest number of missing values, followed by the merchant risk scores.
 ```
 
 
@@ -89,7 +105,8 @@ data_fraud_transactions |>
 
 
 ## (1) What proportion of total transactions are fraudulent?
-Fraud rates vary by currency, with EUR recording the highest fraud rate at 1.5%, compared with GBP and USD.
+The overall fraud rate for the month is about 2% of the total transaction. Though this varies vary by currency, with EUR recording the highest fraud rate at 1.5%, compared with GBP and USD.
+
 EUR accounted for the majority of fraudulent transactions, with an average fraudulent transaction value of approximately EUR 60.
 The total value of fraudulent transactions was approximately 1,200 EUR, 429 GBP, and 73 USD for EUR, GBP, and USD transactions, respectively.
 ```{r}
@@ -98,7 +115,18 @@ The total value of fraudulent transactions was approximately 1,200 EUR, 429 GBP,
 # Proportion of fraudulent transactions.
 data_fraud_transactions |>
   count(actual_fraud) |>
-  mutate(fraud_incidence_prop = n * 100 / nrow(data_fraud_transactions)) # The overall fraud rate for the month is about 2% of the total transaction.
+  mutate(fraud_incidence_prop = percent(n / nrow(data_fraud_transactions))) |>
+  flextable() |> set_header_labels(
+    actual_fraud = "Actual fraud",
+    n = "Count",
+    fraud_incidence_prop = "Proportion"
+  ) |> autofit()
+   # The overall fraud rate for the month is about 2% of the total transaction.
+
+```
+
+# Are there differences in  total fraud rate and losses reported by currency?
+```{r}
 
 # (2) What percentage of transactions are fraudulent?
 # What is the total financial exposure to fraud (amount)?
@@ -138,7 +166,6 @@ data_fraud_transactions |>
 #EUR accounted for the majority of fraudulent transactions, with an average fraudulent transaction value of approximately EUR 60.
 #The total value of fraudulent transactions was approximately 1,200 EUR, 429 GBP, and 73 USD for EUR, GBP, and USD transactions, respectively.
 ```
-
 
 
 # (3) What is the daily fraud rate?
