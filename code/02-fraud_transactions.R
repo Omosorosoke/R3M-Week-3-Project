@@ -54,7 +54,6 @@ data_fraud_transactions |>
   pivot_longer(
     # This will return the object in a vertical tidy format.
     everything(),
-    everything(),
     names_to = "variables",
     values_to = "missing_values"
   ) |>
@@ -643,7 +642,7 @@ plot_title_box_plot <- marquee_glue(
 
 # Plot chart
 data_fraud_transactions |>
-  ggplot(aes(x = actual_fraud, y = merchant_riskscore, color = actual_fraud)) +
+  ggplot(aes(x = actual_fraud, y = merchant_riskscore, fill = actual_fraud)) +
   geom_boxplot(
     outlier.shape = 1,
     outlier.color = "orange",

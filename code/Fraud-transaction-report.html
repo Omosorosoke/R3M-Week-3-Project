@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Kolawole Ojo">
+<meta name="dcterms.date" content="2026-10-09">
 
 <title>Fraud Transaction Report</title>
 <style>
@@ -49,10 +50,49 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="quarto-light">
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction." id="toc-introduction." class="nav-link active" data-scroll-target="#introduction.">Introduction.</a>
+  <ul class="collapse">
+  <li><a href="#variables-and-their-values." id="toc-variables-and-their-values." class="nav-link" data-scroll-target="#variables-and-their-values.">Variables and their values.</a></li>
+  <li><a href="#missing-values" id="toc-missing-values" class="nav-link" data-scroll-target="#missing-values">Missing values</a></li>
+  </ul></li>
+  <li><a href="#thirteen-13-business-questions" id="toc-thirteen-13-business-questions" class="nav-link" data-scroll-target="#thirteen-13-business-questions">Thirteen (13) Business Questions ————————————————————————–</a>
+  <ul class="collapse">
+  <li><a href="#fraud-rate-and-losses." id="toc-fraud-rate-and-losses." class="nav-link" data-scroll-target="#fraud-rate-and-losses.">Fraud rate and losses.</a>
+  <ul class="collapse">
+  <li><a href="#total-fraudulent-transaction" id="toc-total-fraudulent-transaction" class="nav-link" data-scroll-target="#total-fraudulent-transaction">(1) Total fraudulent transaction</a></li>
+  <li><a href="#fraud-incidence-by-currency" id="toc-fraud-incidence-by-currency" class="nav-link" data-scroll-target="#fraud-incidence-by-currency">(2) Fraud incidence by currency</a></li>
+  <li><a href="#daily-fraud-rate" id="toc-daily-fraud-rate" class="nav-link" data-scroll-target="#daily-fraud-rate">(3) Daily fraud rate</a></li>
+  </ul></li>
+  <li><a href="#customer-risk-analysis" id="toc-customer-risk-analysis" class="nav-link" data-scroll-target="#customer-risk-analysis">Customer risk analysis</a>
+  <ul class="collapse">
+  <li><a href="#customer-age-and-risk" id="toc-customer-age-and-risk" class="nav-link" data-scroll-target="#customer-age-and-risk">(4) Customer age and risk</a></li>
+  <li><a href="#vip-status-and-risk" id="toc-vip-status-and-risk" class="nav-link" data-scroll-target="#vip-status-and-risk">(5) Vip status and risk</a></li>
+  <li><a href="#customer-tenure-and-risk" id="toc-customer-tenure-and-risk" class="nav-link" data-scroll-target="#customer-tenure-and-risk">(6) Customer tenure and risk</a></li>
+  <li><a href="#customers-exposure-profile" id="toc-customers-exposure-profile" class="nav-link" data-scroll-target="#customers-exposure-profile">(7) Customers exposure profile?</a></li>
+  <li><a href="#transactions-channels-risk" id="toc-transactions-channels-risk" class="nav-link" data-scroll-target="#transactions-channels-risk">(9) Transactions channels risk?</a></li>
+  </ul></li>
+  <li><a href="#geographic-locations-and-fraud-patterns" id="toc-geographic-locations-and-fraud-patterns" class="nav-link" data-scroll-target="#geographic-locations-and-fraud-patterns">Geographic locations and fraud patterns</a>
+  <ul class="collapse">
+  <li><a href="#cross-border-transactions-and-fraud-patterns" id="toc-cross-border-transactions-and-fraud-patterns" class="nav-link" data-scroll-target="#cross-border-transactions-and-fraud-patterns">(10) Cross-border transactions and fraud patterns</a></li>
+  <li><a href="#billing-destination-and-risk" id="toc-billing-destination-and-risk" class="nav-link" data-scroll-target="#billing-destination-and-risk">(11) Billing destination and risk</a></li>
+  </ul></li>
+  <li><a href="#merchant-risk-analysis" id="toc-merchant-risk-analysis" class="nav-link" data-scroll-target="#merchant-risk-analysis">Merchant Risk Analysis</a>
+  <ul class="collapse">
+  <li><a href="#fraud-incidence-and-merchant-risk" id="toc-fraud-incidence-and-merchant-risk" class="nav-link" data-scroll-target="#fraud-incidence-and-merchant-risk">(12) Fraud incidence and merchant risk</a></li>
+  <li><a href="#merchant-categories-and-risk." id="toc-merchant-categories-and-risk." class="nav-link" data-scroll-target="#merchant-categories-and-risk.">(13) Merchant categories and risk.</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -71,6 +111,12 @@ ul.task-list li input[type="checkbox"] {
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 9, 2026</p>
+    </div>
+  </div>
   
     
   </div>
@@ -80,8 +126,11 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="variables-and-their-unique-values." class="level1">
-<h1>Variables and their unique values.</h1>
+<section id="introduction." class="level1">
+<h1>Introduction.</h1>
+<p>Situation Complication Quetsion</p>
+<section id="variables-and-their-values." class="level2">
+<h2 class="anchored" data-anchor-id="variables-and-their-values.">Variables and their values.</h2>
 <p>This will give an indication of the level of variation in each variable. This also may provide insights that will guide the focus of the analysis.</p>
 <p>Customer ID has 1092 unique values. It may generally not be useful to analyse this variable except for very specific purpose.</p>
 <div class="cell">
@@ -90,8 +139,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="missing-values-accross-columns" class="level1">
-<h1>Missing values accross columns</h1>
+<section id="missing-values" class="level2">
+<h2 class="anchored" data-anchor-id="missing-values">Missing values</h2>
 <p>The device_fingerprint has the highest number of missing values, followed by the merchant risk scores.</p>
 <p>The device_fingerprint has the highest number of missing values, followed by the merchant risk scores.</p>
 <div class="cell" data-label="Missing-values">
@@ -100,14 +149,15 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="tweleve-12-business-questions-and-their-analyses--" class="level1">
-<h1>Tweleve (12) Business Questions and their Analyses ————————————————-</h1>
-<section id="what-proportion-of-total-transactions-are-fraudulent" class="level2">
-<h2 class="anchored" data-anchor-id="what-proportion-of-total-transactions-are-fraudulent">(1) What proportion of total transactions are fraudulent?</h2>
 </section>
-<section id="are-there-differences-in-total-fraud-rate-and-losses-reported-by-currency" class="level2">
-<h2 class="anchored" data-anchor-id="are-there-differences-in-total-fraud-rate-and-losses-reported-by-currency">Are there differences in total fraud rate and losses reported by currency?</h2>
-<p>The overall fraud rate for the month is about 2% of the total transaction. Though this varies vary by currency, with EUR recording the highest fraud rate at 1.5%, compared with GBP and USD.</p>
+<section id="thirteen-13-business-questions" class="level1">
+<h1>Thirteen (13) Business Questions ————————————————————————–</h1>
+<p>In this section, I expored some business-related questions, provided evidence-based answers and explained their implications for business performance and decision-making.</p>
+<section id="fraud-rate-and-losses." class="level2">
+<h2 class="anchored" data-anchor-id="fraud-rate-and-losses.">Fraud rate and losses.</h2>
+<section id="total-fraudulent-transaction" class="level3">
+<h3 class="anchored" data-anchor-id="total-fraudulent-transaction">(1) Total fraudulent transaction</h3>
+<p>What proportion of total transactions are fraudulent? The overall fraud rate for the month is about 2% of the total transaction. Though this varies vary by currency, with EUR recording the highest fraud rate at 1.5%, compared with GBP and USD.</p>
 <p>EUR accounted for the majority of fraudulent transactions, with an average fraudulent transaction value of approximately EUR 60. The total value of fraudulent transactions was approximately 1,200 EUR, 429 GBP, and 73 USD for EUR, GBP, and USD transactions, respectively.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -115,30 +165,35 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-</section>
-<section id="are-there-differences-in-total-fraud-rate-and-losses-reported-by-currency-1" class="level1">
-<h1>Are there differences in total fraud rate and losses reported by currency?</h1>
+<section id="fraud-incidence-by-currency" class="level3">
+<h3 class="anchored" data-anchor-id="fraud-incidence-by-currency">(2) Fraud incidence by currency</h3>
+<p>Are there differences in total fraud rate and losses reported by currency?</p>
 <div class="cell">
 <div class="cell-output-display">
 <div class="tabwid"><style>.cl-d8bad469{}.cl-31e46462{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-ac39df0d{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(8, 143, 143, 1.00);background-color:transparent;}.cl-469ea086{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(8, 143, 143, 1.00);background-color:transparent;}.cl-9f1c1ce9{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-a87b1e2d{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-6477613b{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3abdd4ff{width:0.905in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d6f4506b{width:1.1in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ed5ea0df{width:1.33in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-280d33bb{width:1.559in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f9ded16{width:1.032in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-abfd1f36{width:0.905in;background-color:rgba(211, 211, 211, 0.22);vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-92a90fd0{width:1.1in;background-color:rgba(211, 211, 211, 0.22);vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-51c4f65f{width:1.33in;background-color:rgba(211, 211, 211, 0.22);vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-81307552{width:1.559in;background-color:rgba(211, 211, 211, 0.22);vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d9d6fc46{width:1.032in;background-color:rgba(211, 211, 211, 0.22);vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2807aeec{width:0.905in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0328b7a6{width:1.1in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5558e62b{width:1.33in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-39f0bb90{width:1.559in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d1475128{width:1.032in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-59699206{width:0.905in;background-color:rgba(211, 211, 211, 0.22);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a1528c87{width:1.1in;background-color:rgba(211, 211, 211, 0.22);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5d66b05e{width:1.33in;background-color:rgba(211, 211, 211, 0.22);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f198759{width:1.559in;background-color:rgba(211, 211, 211, 0.22);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-26b9cfe2{width:1.032in;background-color:rgba(211, 211, 211, 0.22);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-28a08144{width:0.905in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2c6f50df{width:1.1in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d92459a1{width:1.33in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-905d2fe6{width:1.559in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-163f0b6e{width:1.032in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-d8bad469"><thead><tr style="overflow-wrap:break-word;"><th colspan="5" class="cl-3abdd4ff"><p class="cl-a87b1e2d"><span class="cl-31e46462">Fraud incidence by currency</span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-abfd1f36"><p class="cl-a87b1e2d"><span class="cl-31e46462">Currency</span></p></th><th class="cl-92a90fd0"><p class="cl-a87b1e2d"><span class="cl-31e46462">Fraud count</span></p></th><th class="cl-51c4f65f"><p class="cl-a87b1e2d"><span class="cl-31e46462">Total fraud loss</span></p></th><th class="cl-81307552"><p class="cl-a87b1e2d"><span class="cl-31e46462">Average fraud loss</span></p></th><th class="cl-d9d6fc46"><p class="cl-a87b1e2d"><span class="cl-31e46462"> Fraud rate</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-2807aeec"><p class="cl-6477613b"><span class="cl-ac39df0d">EUR</span></p></td><td class="cl-0328b7a6"><p class="cl-a87b1e2d"><span class="cl-ac39df0d">20</span></p></td><td class="cl-5558e62b"><p class="cl-a87b1e2d"><span class="cl-ac39df0d">1,183.28</span></p></td><td class="cl-39f0bb90"><p class="cl-a87b1e2d"><span class="cl-469ea086">59.2</span></p></td><td class="cl-d1475128"><p class="cl-a87b1e2d"><span class="cl-ac39df0d">1.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-59699206"><p class="cl-6477613b"><span class="cl-9f1c1ce9">GBP</span></p></td><td class="cl-a1528c87"><p class="cl-a87b1e2d"><span class="cl-9f1c1ce9">4</span></p></td><td class="cl-5d66b05e"><p class="cl-a87b1e2d"><span class="cl-9f1c1ce9">428.74</span></p></td><td class="cl-7f198759"><p class="cl-a87b1e2d"><span class="cl-9f1c1ce9">107.2</span></p></td><td class="cl-26b9cfe2"><p class="cl-a87b1e2d"><span class="cl-9f1c1ce9">0.3</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-28a08144"><p class="cl-6477613b"><span class="cl-9f1c1ce9">USD</span></p></td><td class="cl-2c6f50df"><p class="cl-a87b1e2d"><span class="cl-9f1c1ce9">1</span></p></td><td class="cl-d92459a1"><p class="cl-a87b1e2d"><span class="cl-9f1c1ce9">72.84</span></p></td><td class="cl-905d2fe6"><p class="cl-a87b1e2d"><span class="cl-9f1c1ce9">72.8</span></p></td><td class="cl-163f0b6e"><p class="cl-a87b1e2d"><span class="cl-9f1c1ce9">0.1</span></p></td></tr></tbody></table></div>
 </div>
 </div>
 </section>
-<section id="what-is-the-daily-fraud-rate" class="level1">
-<h1>(3) What is the daily fraud rate?</h1>
+<section id="daily-fraud-rate" class="level3">
+<h3 class="anchored" data-anchor-id="daily-fraud-rate">(3) Daily fraud rate</h3>
+<p>What is the daily fraud rate?</p>
 <p>One or two cases of fraud incidence per day are typical, with three cases on a single day being an outlier.” Fraud incidence in a given month ranges between one and two per day with three being an outlier.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Fraud-transaction-report_files/figure-html/Fraud-rate-by-daily-period-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Fraud-transaction-report_files/figure-html/Fraud-rate-by-daily-period-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
+</section>
+</section>
 <section id="customer-risk-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="customer-risk-analysis">Customer risk analysis</h2>
-<p>Fraud incidence does not appear to vary substantially by customer age. Customers across all age groups appear to be similarly likely to experience transaction fraud.</p>
+<section id="customer-age-and-risk" class="level3">
+<h3 class="anchored" data-anchor-id="customer-age-and-risk">(4) Customer age and risk</h3>
+<p>Which customer age groups have the highest incidence of fraud? Customer risk analysis: Fraud incidence does not appear to vary substantially by customer age. Customers across all age groups appear to be similarly likely to experience transaction fraud.</p>
 <p>The three largest fraudulent transactions by transaction value involved card payments. However, further analysis is required to determine whether card payments are more susceptible to fraud than other payment methods.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -146,9 +201,9 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-</section>
-<section id="are-vip-customers-more-or-less-likely-to-experience-fraud-than-non-vip-customers" class="level1">
-<h1>Are VIP customers more or less likely to experience fraud than non-VIP customers?</h1>
+<section id="vip-status-and-risk" class="level3">
+<h3 class="anchored" data-anchor-id="vip-status-and-risk">(5) Vip status and risk</h3>
+<p>Are VIP customers more or less likely to experience fraud than non-VIP customers?</p>
 <p>No transactions involving VIP customers were identified as fraudulent; all fraudulent transactions involved non-VIP customers.</p>
 <div class="cell" data-label="VIP-customer-and-fraud-experince">
 <div class="cell-output-display">
@@ -156,9 +211,9 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="is-customer-tenure-associated-with-a-lower-risk-of-fraud" class="level1">
-<h1>(6) Is customer tenure associated with a lower risk of fraud?</h1>
-<p>Fraud incidence appears to vary by customer tenure. Customers with tenure below the average are more likely to have experienced fraud.</p>
+<section id="customer-tenure-and-risk" class="level3">
+<h3 class="anchored" data-anchor-id="customer-tenure-and-risk">(6) Customer tenure and risk</h3>
+<p>Is customer tenure associated with a lower risk of fraud? Fraud incidence appears to vary by customer tenure. Customers with tenure below the average are more likely to have experienced fraud.</p>
 <p>Specifically, 60% of customers with shorter tenure were victims of fraud, compared with 40% of customers with longer tenure.</p>
 <div class="cell" data-label="customer-tenure-and-fraud-experience">
 <div class="cell-output-display">
@@ -166,54 +221,96 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="which-five-customers-experienced-the-highest-fraud-losses" class="level1">
-<h1>(7) Which five customers experienced the highest fraud losses?</h1>
-<p>It is also evident that the highest-value fraud involved card payments. Does this suggest that card payments are more susceptible to fraud?</p>
+<section id="customers-exposure-profile" class="level3">
+<h3 class="anchored" data-anchor-id="customers-exposure-profile">(7) Customers exposure profile?</h3>
+<p>Which five customers experienced the highest fraud losses? It is also evident that the highest-value fraud involved card payments. Does this suggest that card payments are more susceptible to fraud?</p>
 <div class="cell" data-label="Customers-and-fraud-incidence">
 <div class="cell-output-display">
 <div class="tabwid"><style>.cl-d8bad469{}.cl-31e46462{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-469ea086{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(8, 143, 143, 1.00);background-color:transparent;}.cl-9f1c1ce9{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-6477613b{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-a1958ec5{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-747ca22c{width:1.193in;background-color:transparent;vertical-align: middle;border-bottom: 0.5pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e1fbecfa{width:1.304in;background-color:transparent;vertical-align: middle;border-bottom: 0.5pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0e77cd99{width:0.862in;background-color:transparent;vertical-align: middle;border-bottom: 0.5pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-b96fcf38{width:0.956in;background-color:transparent;vertical-align: middle;border-bottom: 0.5pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-45fd7dbf{width:1.075in;background-color:transparent;vertical-align: middle;border-bottom: 0.5pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9008521c{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 0.5pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-948d9630{width:0.795in;background-color:transparent;vertical-align: middle;border-bottom: 0.5pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5c26cb6e{width:1.193in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-534ff7c0{width:1.304in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1c68a2d4{width:0.862in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-4fca25e5{width:0.956in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-cc37af04{width:1.075in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9736ebed{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a346c711{width:0.795in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a45c7e39{width:1.193in;background-color:rgba(211, 211, 211, 0.22);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9cab315b{width:1.304in;background-color:rgba(211, 211, 211, 0.22);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-673a50e4{width:0.862in;background-color:rgba(211, 211, 211, 0.22);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-84662f77{width:0.956in;background-color:rgba(211, 211, 211, 0.22);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-45a4a188{width:1.075in;background-color:rgba(211, 211, 211, 0.22);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-8a0f1a42{width:0.922in;background-color:rgba(211, 211, 211, 0.22);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-cc50b7bc{width:0.795in;background-color:rgba(211, 211, 211, 0.22);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-4d35f3b5{width:1.193in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-fcf05aa3{width:1.304in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-365b98e7{width:0.862in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c0f6c1ab{width:0.956in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f0e21c34{width:1.075in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2d2f279c{width:0.922in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e9402a58{width:0.795in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-d8bad469"><thead><tr style="overflow-wrap:break-word;"><th class="cl-747ca22c"><p class="cl-6477613b"><span class="cl-31e46462">Customer ID</span></p></th><th class="cl-e1fbecfa"><p class="cl-a1958ec5"><span class="cl-31e46462">Customer age</span></p></th><th class="cl-0e77cd99"><p class="cl-a1958ec5"><span class="cl-31e46462">Amount</span></p></th><th class="cl-b96fcf38"><p class="cl-6477613b"><span class="cl-31e46462">Currency</span></p></th><th class="cl-45fd7dbf"><p class="cl-6477613b"><span class="cl-31e46462">Channel</span></p></th><th class="cl-9008521c"><p class="cl-6477613b"><span class="cl-31e46462">Payment</span></p></th><th class="cl-948d9630"><p class="cl-a1958ec5"><span class="cl-31e46462">Tenure</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-5c26cb6e"><p class="cl-6477613b"><span class="cl-469ea086">C000804</span></p></td><td class="cl-534ff7c0"><p class="cl-a1958ec5"><span class="cl-469ea086">24</span></p></td><td class="cl-1c68a2d4"><p class="cl-a1958ec5"><span class="cl-469ea086">216.80</span></p></td><td class="cl-4fca25e5"><p class="cl-6477613b"><span class="cl-469ea086">EUR</span></p></td><td class="cl-cc37af04"><p class="cl-6477613b"><span class="cl-469ea086">mobile_app</span></p></td><td class="cl-9736ebed"><p class="cl-6477613b"><span class="cl-469ea086">card</span></p></td><td class="cl-a346c711"><p class="cl-a1958ec5"><span class="cl-469ea086">3,378</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a45c7e39"><p class="cl-6477613b"><span class="cl-9f1c1ce9">C000581</span></p></td><td class="cl-9cab315b"><p class="cl-a1958ec5"><span class="cl-9f1c1ce9">59</span></p></td><td class="cl-673a50e4"><p class="cl-a1958ec5"><span class="cl-9f1c1ce9">193.91</span></p></td><td class="cl-84662f77"><p class="cl-6477613b"><span class="cl-9f1c1ce9">GBP</span></p></td><td class="cl-45a4a188"><p class="cl-6477613b"><span class="cl-9f1c1ce9">web</span></p></td><td class="cl-8a0f1a42"><p class="cl-6477613b"><span class="cl-9f1c1ce9">card</span></p></td><td class="cl-cc50b7bc"><p class="cl-a1958ec5"><span class="cl-9f1c1ce9">607</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5c26cb6e"><p class="cl-6477613b"><span class="cl-9f1c1ce9">C001866</span></p></td><td class="cl-534ff7c0"><p class="cl-a1958ec5"><span class="cl-9f1c1ce9">77</span></p></td><td class="cl-1c68a2d4"><p class="cl-a1958ec5"><span class="cl-9f1c1ce9">118.64</span></p></td><td class="cl-4fca25e5"><p class="cl-6477613b"><span class="cl-9f1c1ce9">GBP</span></p></td><td class="cl-cc37af04"><p class="cl-6477613b"><span class="cl-9f1c1ce9">web</span></p></td><td class="cl-9736ebed"><p class="cl-6477613b"><span class="cl-9f1c1ce9">card</span></p></td><td class="cl-a346c711"><p class="cl-a1958ec5"><span class="cl-9f1c1ce9">1,620</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a45c7e39"><p class="cl-6477613b"><span class="cl-9f1c1ce9">C001576</span></p></td><td class="cl-9cab315b"><p class="cl-a1958ec5"><span class="cl-9f1c1ce9">42</span></p></td><td class="cl-673a50e4"><p class="cl-a1958ec5"><span class="cl-9f1c1ce9">118.49</span></p></td><td class="cl-84662f77"><p class="cl-6477613b"><span class="cl-9f1c1ce9">EUR</span></p></td><td class="cl-45a4a188"><p class="cl-6477613b"><span class="cl-9f1c1ce9">pos</span></p></td><td class="cl-8a0f1a42"><p class="cl-6477613b"><span class="cl-9f1c1ce9">card</span></p></td><td class="cl-cc50b7bc"><p class="cl-a1958ec5"><span class="cl-9f1c1ce9">671</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-4d35f3b5"><p class="cl-6477613b"><span class="cl-9f1c1ce9">C001779</span></p></td><td class="cl-fcf05aa3"><p class="cl-a1958ec5"><span class="cl-9f1c1ce9">54</span></p></td><td class="cl-365b98e7"><p class="cl-a1958ec5"><span class="cl-9f1c1ce9">103.16</span></p></td><td class="cl-c0f6c1ab"><p class="cl-6477613b"><span class="cl-9f1c1ce9">EUR</span></p></td><td class="cl-f0e21c34"><p class="cl-6477613b"><span class="cl-9f1c1ce9">web</span></p></td><td class="cl-2d2f279c"><p class="cl-6477613b"><span class="cl-9f1c1ce9">card</span></p></td><td class="cl-e9402a58"><p class="cl-a1958ec5"><span class="cl-9f1c1ce9">772</span></p></td></tr></tbody></table></div>
 </div>
 </div>
-<section id="which-payment-methods-have-the-highest-incidence-of-fraud" class="level2">
-<h2 class="anchored" data-anchor-id="which-payment-methods-have-the-highest-incidence-of-fraud">(8) Which payment methods have the highest incidence of fraud?</h2>
-<p>Digital properties and fraud incidence:</p>
+<p>## Digital properties and fraud incidence: ### (8) Payment methods and risk? Which payment methods have the highest incidence of fraud?</p>
 <p>Card payment transactions recorded the highest fraud.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Fraud-transaction-report_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Fraud-transaction-report_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="which-transactions-channels-have-the-highest-fraud-rates" class="level2">
-<h2 class="anchored" data-anchor-id="which-transactions-channels-have-the-highest-fraud-rates">(9) Which transactions channels have the highest fraud rates?</h2>
-<p>Web channel transations reported the highest fraud.</p>
+<section id="transactions-channels-risk" class="level3">
+<h3 class="anchored" data-anchor-id="transactions-channels-risk">(9) Transactions channels risk?</h3>
+<p>Which transactions channels have the highest fraud rates? Web channel transations reported the highest fraud.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Fraud-transaction-report_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Fraud-transaction-report_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="576"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="are-cross-border-transactions-riskier" class="level2">
-<h2 class="anchored" data-anchor-id="are-cross-border-transactions-riskier">(10) Are cross-border transactions riskier?</h2>
-<p>Geographic locations and Fraud Patterns: I defined a cross-border transaction as one where the ip_country, billing_country, and shipping_country differ.</p>
+</section>
+<section id="geographic-locations-and-fraud-patterns" class="level2">
+<h2 class="anchored" data-anchor-id="geographic-locations-and-fraud-patterns">Geographic locations and fraud patterns</h2>
+<section id="cross-border-transactions-and-fraud-patterns" class="level3">
+<h3 class="anchored" data-anchor-id="cross-border-transactions-and-fraud-patterns">(10) Cross-border transactions and fraud patterns</h3>
+<p>Are cross-border transactions riskier? First what are cross-border transactions? I defined them as those where the customer’s ip_country, billing_country, and shipping_country differ.</p>
 <p>The majority of fraudulent transactions (88%) are cross-border transactions. These are transactions in which the IP country differs from the billing country and the billing country differs from the shipping country.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="tabwid"><style>.cl-d8bad469{}.cl-9f1c1ce9{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-469ea086{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(8, 143, 143, 1.00);background-color:transparent;}.cl-6477613b{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-a1958ec5{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-e90b33e8{width:1.016in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7357aea3{width:1.16in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ea73446f{width:1.1in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-542ad4c2{width:0.65in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d9813a84{width:1.016in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7dd94826{width:1.16in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90fdcfa9{width:1.1in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2edc4259{width:0.65in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-92600c5a{width:1.016in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1d562061{width:1.16in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d114eb7e{width:1.1in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-4c6055a0{width:0.65in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-d8bad469"><thead><tr style="overflow-wrap:break-word;"><th class="cl-e90b33e8"><p class="cl-6477613b"><span class="cl-9f1c1ce9">Status</span></p></th><th class="cl-7357aea3"><p class="cl-6477613b"><span class="cl-9f1c1ce9">Nature</span></p></th><th class="cl-ea73446f"><p class="cl-a1958ec5"><span class="cl-9f1c1ce9">Fraud count</span></p></th><th class="cl-542ad4c2"><p class="cl-6477613b"><span class="cl-9f1c1ce9">Prop.</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-d9813a84"><p class="cl-6477613b"><span class="cl-469ea086">Fraudulent</span></p></td><td class="cl-7dd94826"><p class="cl-6477613b"><span class="cl-469ea086">cross border</span></p></td><td class="cl-90fdcfa9"><p class="cl-a1958ec5"><span class="cl-469ea086">22</span></p></td><td class="cl-2edc4259"><p class="cl-6477613b"><span class="cl-469ea086">88%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-92600c5a"><p class="cl-6477613b"><span class="cl-9f1c1ce9">Fraudulent</span></p></td><td class="cl-1d562061"><p class="cl-6477613b"><span class="cl-9f1c1ce9">within border</span></p></td><td class="cl-d114eb7e"><p class="cl-a1958ec5"><span class="cl-9f1c1ce9">3</span></p></td><td class="cl-4c6055a0"><p class="cl-6477613b"><span class="cl-9f1c1ce9">12%</span></p></td></tr></tbody></table></div>
+<div class="tabwid"><style>.cl-d8bad469{}.cl-9f1c1ce9{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-d609b7aa{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 151, 138, 1.00);background-color:transparent;}.cl-6477613b{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-a1958ec5{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-e90b33e8{width:1.016in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7357aea3{width:1.16in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ea73446f{width:1.1in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-542ad4c2{width:0.65in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1.5pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d9813a84{width:1.016in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7dd94826{width:1.16in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-90fdcfa9{width:1.1in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-2edc4259{width:0.65in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-92600c5a{width:1.016in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1d562061{width:1.16in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-d114eb7e{width:1.1in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-4c6055a0{width:0.65in;background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-d8bad469"><thead><tr style="overflow-wrap:break-word;"><th class="cl-e90b33e8"><p class="cl-6477613b"><span class="cl-9f1c1ce9">Status</span></p></th><th class="cl-7357aea3"><p class="cl-6477613b"><span class="cl-9f1c1ce9">Nature</span></p></th><th class="cl-ea73446f"><p class="cl-a1958ec5"><span class="cl-9f1c1ce9">Fraud count</span></p></th><th class="cl-542ad4c2"><p class="cl-6477613b"><span class="cl-9f1c1ce9">Prop.</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-d9813a84"><p class="cl-6477613b"><span class="cl-d609b7aa">Fraudulent</span></p></td><td class="cl-7dd94826"><p class="cl-6477613b"><span class="cl-d609b7aa">cross border</span></p></td><td class="cl-90fdcfa9"><p class="cl-a1958ec5"><span class="cl-d609b7aa">22</span></p></td><td class="cl-2edc4259"><p class="cl-6477613b"><span class="cl-d609b7aa">88%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-92600c5a"><p class="cl-6477613b"><span class="cl-9f1c1ce9">Fraudulent</span></p></td><td class="cl-1d562061"><p class="cl-6477613b"><span class="cl-9f1c1ce9">within border</span></p></td><td class="cl-d114eb7e"><p class="cl-a1958ec5"><span class="cl-9f1c1ce9">3</span></p></td><td class="cl-4c6055a0"><p class="cl-6477613b"><span class="cl-9f1c1ce9">12%</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+</section>
+<section id="billing-destination-and-risk" class="level3">
+<h3 class="anchored" data-anchor-id="billing-destination-and-risk">(11) Billing destination and risk</h3>
+<p>Which are the top illing countries for fraudulent transaction?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Fraud-transaction-report_files/figure-html/Cross-border-transactions-and-fraud-incidence-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 </section>
-<section id="which-are-the-top-billing-countries-for-fraudulent-transaction" class="level1">
-<h1>(11) Which are the top billing countries for fraudulent transaction?</h1>
+<section id="merchant-risk-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="merchant-risk-analysis">Merchant Risk Analysis</h2>
+<section id="fraud-incidence-and-merchant-risk" class="level3">
+<h3 class="anchored" data-anchor-id="fraud-incidence-and-merchant-risk">(12) Fraud incidence and merchant risk</h3>
+<p>Does fraud incidence vary by merchant risk score?</p>
+<p>Fraudulent transactions are common with high-risk merchants relative to non-fraudulent ones than their low-risk counter parts.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Fraud-transaction-report_files/figure-html/Merchant-risk-scores-and-fraud-incidence-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="merchant-categories-and-risk." class="level3">
+<h3 class="anchored" data-anchor-id="merchant-categories-and-risk.">(13) Merchant categories and risk.</h3>
+<p>Which merchant categories have the highest fraud rates?</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Fraud-transaction-report_files/figure-html/plot-chart-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
 </section>
 
 </main>
