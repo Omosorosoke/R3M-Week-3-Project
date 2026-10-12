@@ -7,10 +7,10 @@ format:
   html:
     toc: true
     fig-width: 6
-    embed-resources: true
-    number-sections: true
     fig-asp: 0.618
     fig-align: center
+    embed-resources: true
+    number-sections: true
 execute: 
   echo: false
   message: false
@@ -118,7 +118,7 @@ data_fraud_transactions |>
 
 
 
-# Thirteen (13) Business Questions --------------------------------------------------------------------------
+# Business Questions --------------------------------------------------------------------------
 In this section, I expored some business-related questions, provided evidence-based answers to them, and explained their implications for company's business performance and decision-making. 
 
 ## Fraud rate and losses
@@ -977,5 +977,5 @@ data_fraud_transactions |>
   ) 
 ```
 
-# Conclusion
+# Conclusions
 EssanPay recorded an overall monthly fraud rate of 2%, with fraud incidence varying by customer tenure, transaction channel, and payment method. Fraud exposure also differed across merchant risk profiles, with high-risk merchants recording greater fraud losses. Customer age was not associated with differences in fraud exposure, while no fraudulent transactions were recorded among VIP customers. Fraud incidents were more common among customers with shorter tenure than among those with longer tenure. Finally, cross-border transactions were generally more vulnerable to fraud, while Britain and Ireland recorded higher fraud losses than other countries.
