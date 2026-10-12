@@ -1,15 +1,23 @@
 ---
-title: "Fraud Transactions Report"
-format: html
-author : "Kolawole Ojo"
-date: 2026-10-09
+title: Fraud Transactions Report
+author: "Kolawole Ojo"
+date: today
+lang: en-GB
+format: 
+  html:
+    toc: true
+    fig-width: 6
+    embed-resources: true
+    number-sections: true
+    fig-asp: 0.618
+    fig-align: center
 execute: 
   echo: false
   message: false
   warning: false
-toc: true
-fig-width: 6
-fig-asp: 0.618
+
+
+
 
   
 ---
@@ -18,8 +26,6 @@ fig-asp: 0.618
 ```{r}
 # | label: set-up
 library(tidyverse)
-library(gt)
-library(gtExtras)
 library(ggthemes)
 library(janitor)
 library(hrbrthemes)
@@ -27,7 +33,7 @@ library(scales)
 library(marquee)
 library(ggrepel)
 library(flextable)
-library(gtExtras)
+
 library(officer) # Work with flexatable
 library(here)
 library(ggtext)
@@ -56,7 +62,6 @@ This will give an indication of the level of variation in each variable. This al
 Customer ID has 1092 unique values. It may generally not be useful to analyse this variable except for very specific purpose.
 ```{r}
 #| label: Check-variation-in-column-values
-#| echo: false
 # Count the number of unique values in selected columns of interest.
 # This provides an indication of the level of variation in each variable.
 # This also may provide insights that will guide the focus of the analysis.
@@ -121,13 +126,13 @@ In this section, I expored some business-related questions, provided evidence-ba
 
 ## Fraud rate and losses
 
-### (1) Total fraudulent transaction
+### Total fraudulent transaction
 What proportion of total transactions are fraudulent?
 
 The overall fraud rate for the month is about 2% of the total transaction. Though this varies vary by currency, with EUR recording the highest fraud rate at 1.5%, compared with GBP and USD.
 
-EUR accounted for the majority of fraudulent transactions, with an average fraudulent transaction value of approximately EUR 60.
-The total value of fraudulent transactions was approximately 1,200 EUR, 429 GBP, and 73 USD for EUR, GBP, and USD transactions, respectively.
+EUR accounted for the majority of fraudulent transactions, with an average fraudulent transaction value of approximately  EUR 60 .
+The total value of fraudulent transactions was approximately  EUR 1,200,  GBP 429, and  USD 73 for EUR, GBP, and USD transactions, respectively.
 ```{r}
 #| label: Fraud-rate
 # (1) What proportion of total transactions are fraudulent?
@@ -145,7 +150,7 @@ data_fraud_transactions |>
 
 ```
 
-### (2) Fraud incidence by currency
+### Fraud incidence by currency
 Are there differences in  total fraud rate and losses reported by currency?
 ```{r}
 #| label: Fraud-incidence-risk
@@ -189,7 +194,7 @@ data_fraud_transactions |>
 ```
 
 
-### (3) Daily fraud rate
+### Daily fraud rate
 What is the daily fraud rate?
 ```{r}
 #| label: Daily-fraud-rate
@@ -246,7 +251,7 @@ data_fraud_transactions |>
   annotate(
     geom = "text",
     x = 29,
-    y = 2,
+    y = 2.3,
     hjust = 1,
     color = 'black',
     family = "serif",
@@ -269,26 +274,26 @@ data_fraud_transactions |>
     ),
     axis.text.x = element_text(
       face = "bold",
-      size = 11,
+      size = 10,
       margin = NULL
     ),
     axis.text.y = element_text(
       face = "bold",
-      size = 11,
+      size = 10,
       margin = NULL
     ),
     plot.title = element_marquee(
-      #width = 1,
-      size = 16,
+      width = 1,
+      size = 15,
       vjust = 0,
       margin = NULL, 
-      # lineheight = 1,
+      lineheight = 1,
     ),
     plot.subtitle = element_marquee(
       size = 13,
       vjust = 1,
       margin = NULL,
-      #lineheight = 1
+      lineheight = 1
     ),
     plot.title.position = "plot"
   )
@@ -298,7 +303,7 @@ data_fraud_transactions |>
 ```
 
 ##  Customer risk analysis
-### (4) Customer age and risk
+### Customer age and risk
 Which customer age groups have the highest incidence of fraud?
 Customer risk analysis: 
 Fraud incidence does not appear to vary substantially by customer age. Customers across all age groups appear to be similarly likely to experience transaction fraud.
@@ -321,7 +326,7 @@ n = "Fraud count"
 ```
 
 
-### (5) Vip status and risk
+### Vip status and risk
 
  Are VIP customers more or less likely to experience fraud than non-VIP customers?
 
@@ -352,7 +357,7 @@ data_fraud_transactions |>
 ```
 
 
-### (6) Customer tenure and risk
+### Customer tenure and risk
  Is customer tenure associated with a lower risk of fraud?
 Fraud incidence appears to vary by customer tenure. Customers with tenure below the average are more likely to have experienced fraud.
 
@@ -403,7 +408,7 @@ data_fraud_transactions |>
 
 ```
 
-###  (7) Customers exposure profile
+### Customers exposure profile
 Which five customers experienced the highest fraud losses?
 It is also evident that the highest-value fraud involved card payments. Does this suggest that card payments are more susceptible to fraud?
 
@@ -453,8 +458,8 @@ data_fraud_transactions |>
 ```
 
 
- ## Digital properties and fraud incidence: 
-### (8) Payment methods and risk
+## Digital properties and fraud incidence: 
+### Payment methods and risk
 Which payment methods have the highest incidence of fraud?
 
 Card payment transactions recorded the highest fraud.
@@ -510,25 +515,24 @@ data_fraud_transactions |>
   theme(
     plot.title = element_marquee(
       width = 1,
-      size = 16,
+      size = 15,
       vjust = 0,
-      margin = margin(0,0,12,0),
-      lineheight = 0.5
+      lineheight = 1
     ),
     plot.subtitle = element_text(
       size = 13,
       vjust = 1,
-      lineheight = 0.5
+      lineheight = 1.5
     ),
     plot.title.position = "plot",
     panel.grid.minor.y = element_blank(),
     panel.grid.major.y = element_blank(),
     panel.grid.major.x = element_line(
-      linewidth = 0.3
+      linewidth = 0.4
     ),
     axis.text.y = element_text(
       face = "bold",
-      size = 11,
+      size = 10,
       vjust = 1,
       hjust = 1,
       margin = NULL
@@ -546,7 +550,7 @@ data_fraud_transactions |>
 
 ```
 
-### (9) Transactions channels risk
+### Transactions channels risk
 Which transactions channels have the highest fraud rates?
  Web channel transations reported the highest fraud.
 ```{r}
@@ -603,17 +607,16 @@ data_fraud_transactions |>
   ) +
   theme(
     plot.title = element_marquee(
-     # width = 1,
-      size = 16,
+     width = 1,
+      size = 15,
       vjust = 0,
       margin = NULL,
-     # lineheight = 1
+     lineheight = 1
     ),
     plot.subtitle = element_text(
       size = 13,
       vjust = 1,
-      margin = margin(0, 0, 12, 0),  # I am not sure if this is woring!
-      # lineheight = 1.5
+      lineheight = 1.5
     ),
     plot.title.position = "plot",
     panel.grid.minor.y = element_blank(),
@@ -626,7 +629,7 @@ data_fraud_transactions |>
     axis.text.x = element_blank(),
     axis.text.y = element_text(
       face = "bold",
-      size = 12,
+      size = 10,
       vjust = 1,
       hjust = 1,
       margin = NULL
@@ -642,7 +645,7 @@ data_fraud_transactions |>
 ```
 
 ## Geographic locations and  fraud patterns
-###  (10) Cross-border transactions and  fraud patterns
+### Cross-border transactions and  fraud patterns
 Are cross-border transactions riskier?
 First what are cross-border transactions?
 I defined them as those where the customer's 
@@ -692,7 +695,7 @@ data_fraud_transactions_cross_border |>
   autofit()
 ```
 
-###  (11) Billing destination and risk
+### Billing destination and risk
 Which are the top illing countries for fraudulent transaction?
 ```{r}
 #| label: Plot-title
@@ -763,7 +766,7 @@ data_fraud_transactions_cross_border |>
     axis.text.x = element_blank(), #This is made invisble
     axis.text.y = element_text(
       face = "bold",
-      size = 11,
+      size = 10,
       vjust = 1,
       hjust = 1,
       margin = NULL
@@ -778,7 +781,7 @@ data_fraud_transactions_cross_border |>
     ),
     plot.title = element_marquee(
       width = 1,
-      size = 16,
+      size = 15,
       vjust = 0,
       margin = NULL,
       lineheight = 1
@@ -798,7 +801,7 @@ data_fraud_transactions_cross_border |>
 
 
 ## Merchant risk analyses
-### (12) Fraud incidence and merchant risk
+### Fraud incidence and merchant risk
 Does fraud incidence vary by merchant risk score?
 
 ```{r}
@@ -838,13 +841,13 @@ data_fraud_transactions |>
     #panel.grid.major.y = element_blank(),
     axis.text.x = element_text(
       face = "bold",
-      size = 11,
+      size = 10,
       vjust = 1,
       margin = NULL
     ),
     axis.text.y = element_text(
       face = "bold",
-      size = 11,
+      size = 10,
       vjust = 1,
 
       margin = NULL
@@ -859,7 +862,7 @@ data_fraud_transactions |>
     ),
     plot.title = element_marquee(
       width = 1,
-      size = 16,
+      size = 15,
       hjust = 0,
       vjust = 1,
       margin = NULL,
@@ -881,7 +884,7 @@ data_fraud_transactions |>
 ```
 
 
-### (13) Merchant categories and risk
+### Merchant categories and risk
 Which merchant categories have the highest fraud rates?
 ```{r}
 #| label: Set-up-plot-title-variables.
@@ -955,7 +958,7 @@ data_fraud_transactions |>
     axis.text.x = element_blank(),
     axis.text.y = element_text(
       face = "bold",
-      size = 12,
+      size = 10,
       vjust = 0,
       hjust = 1,
       margin = NULL
@@ -970,7 +973,7 @@ data_fraud_transactions |>
     ),
     plot.title = element_marquee(
       width = 1,
-      size = 16,
+      size = 15,
       hjust = 0,
       vjust = 1,
       margin = NULL,
