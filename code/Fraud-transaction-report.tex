@@ -1,0 +1,1268 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\usepackage{fontspec}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{colortbl}
+\usepackage[normalem]{ulem}
+\usepackage{hhline}
+\newlength\Oldarrayrulewidth
+\newlength\Oldtabcolsep
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{wrapfig}
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+% fallback for those not using the hyperref driver hyperxmp:
+\makeatletter
+\@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
+\makeatother
+\hypersetup{
+  pdftitle={Fraud Transaction Report},
+  pdfauthor={Kolawole Ojo},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Fraud Transaction Report}
+\author{Kolawole Ojo}
+\date{2026-10-09}
+\begin{document}
+\maketitle
+
+\renewcommand*\contentsname{Table of contents}
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+
+\section{Introduction.}\label{introduction.}
+
+EssanPay Co.~(EP) is a digital payment service provider that processes
+card payments and digital wallet transactions for e-commerce businesses.
+These businesses offer a wide range of products through multiple online
+merchants and retailers operating across several markets. Customers can
+conveniently make purchases through the retailers' digital channels.
+
+Although EP is experiencing rapid growth in online and mobile
+transactions, it faces a significant challenge: fraudulent transactions.
+While the company maintains records of these incidents, it does not yet
+have a clear understanding of the prevalence and distribution of fraud
+risks across its customer and merchant base.
+
+The board has raised several questions to better understand the
+company's exposure to transaction fraud and has engaged me as a
+consultant to analyse the available transaction data and provide
+evidence-based insights into its fraud exposure.
+
+The following sections present insights from my data analysis that
+address the board's questions.
+
+\subsection{Variables and their
+values.}\label{variables-and-their-values.}
+
+This will give an indication of the level of variation in each variable.
+This also may provide insights that will guide the focus of the
+analysis.
+
+Customer ID has 1092 unique values. It may generally not be useful to
+analyse this variable except for very specific purpose.
+
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
+
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
+
+\setlength{\tabcolsep}{2pt}
+
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable*}[c]{|p{1.59in}|p{1.25in}}
+
+
+
+\ascline{1.5pt}{666666}{1-2}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.59in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Items}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.25in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Unique\ values}}}} \\
+
+\ascline{1.5pt}{666666}{1-2}\endfirsthead 
+
+\ascline{1.5pt}{666666}{1-2}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.59in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Items}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.25in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Unique\ values}}}} \\
+
+\ascline{1.5pt}{666666}{1-2}\endhead
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.59in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} customer\_id}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.25in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1,092}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.59in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} merchant\_category}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.25in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 12}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.59in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} billing\_country}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.25in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 10}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.59in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} shipping\_country}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.25in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 10}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.59in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} email\_domain}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.25in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 8}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.59in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} channel}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.25in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 4}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.59in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} currency}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.25in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 3}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.59in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} product\_type}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.25in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 3}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.59in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} payment\_method}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.25in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 3}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.59in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} is\_cross\_border}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.25in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 2}}}} \\
+
+\ascline{1.5pt}{666666}{1-2}
+
+
+
+\end{longtable*}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
+
+\subsection{Missing values}\label{missing-values}
+
+The device\_fingerprint has the highest number of missing values,
+followed by the merchant risk scores.
+
+The device\_fingerprint has the highest number of missing values,
+followed by the merchant risk scores.
+
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
+
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
+
+\setlength{\tabcolsep}{2pt}
+
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable*}[c]{|p{0.75in}|p{0.75in}}
+
+
+
+\ascline{1.5pt}{666666}{1-2}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Variables}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Missing\ values}}}} \\
+
+\ascline{1.5pt}{666666}{1-2}\endfirsthead 
+
+\ascline{1.5pt}{666666}{1-2}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Variables}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Missing\ values}}}} \\
+
+\ascline{1.5pt}{666666}{1-2}\endhead
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} device\_fingerprint}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 185}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} merchant\_riskscore}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 97}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} email\_domain}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 41}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} txn\_count\_1h}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 19}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} txn\_count\_24h}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 12}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} transaction\_id}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} transaction\_date}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} customer\_id}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} customer\_age}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} customer\_tenure\_days}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} is\_vip}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} merchant\_id}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} merchant\_category}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} amount}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} currency}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} payment\_method}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} channel}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} card\_present}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} device\_type}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} billing\_country}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} shipping\_country}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} ip\_country}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} is\_cross\_border}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} is\_new\_device}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} prev\_chargebacks\_12m}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} product\_type}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} actual\_fraud}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} predicted\_fraud}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.75in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} \\
+
+\ascline{1.5pt}{666666}{1-2}
+
+
+
+\end{longtable*}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
+
+\section{Thirteen (13) Business Questions
+--------------------------------------------------------------------------}\label{thirteen-13-business-questions}
+
+In this section, I expored some business-related questions, provided
+evidence-based answers to them, and explained their implications for
+company's business performance and decision-making.
+
+\subsection{Fraud rate and losses.}\label{fraud-rate-and-losses.}
+
+\subsubsection{(1) Total fraudulent
+transaction}\label{total-fraudulent-transaction}
+
+What proportion of total transactions are fraudulent?
+
+The overall fraud rate for the month is about 2\% of the total
+transaction. Though this varies vary by currency, with EUR recording the
+highest fraud rate at 1.5\%, compared with GBP and USD.
+
+EUR accounted for the majority of fraudulent transactions, with an
+average fraudulent transaction value of approximately EUR 60. The total
+value of fraudulent transactions was approximately 1,200 EUR, 429 GBP,
+and 73 USD for EUR, GBP, and USD transactions, respectively.
+
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
+
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
+
+\setlength{\tabcolsep}{2pt}
+
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable*}[c]{|p{1.10in}|p{0.69in}|p{0.99in}}
+
+
+
+\ascline{1.5pt}{666666}{1-3}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Actual\ fraud}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.69in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Count}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.99in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Proportion}}}} \\
+
+\ascline{1.5pt}{666666}{1-3}\endfirsthead 
+
+\ascline{1.5pt}{666666}{1-3}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Actual\ fraud}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.69in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Count}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.99in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Proportion}}}} \\
+
+\ascline{1.5pt}{666666}{1-3}\endhead
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Legitimate}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.69in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1,352}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.99in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 98\%}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Fraudulent}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.69in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 25}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.99in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 2\%}}}} \\
+
+\ascline{1.5pt}{666666}{1-3}
+
+
+
+\end{longtable*}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
+
+\subsubsection{(2) Fraud incidence by
+currency}\label{fraud-incidence-by-currency}
+
+Are there differences in total fraud rate and losses reported by
+currency?
+
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
+
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
+
+\setlength{\tabcolsep}{2pt}
+
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable*}[c]{|p{0.90in}|p{1.10in}|p{1.33in}|p{1.56in}|p{1.03in}}
+
+
+
+\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}-}
+
+\multicolumn{5}{>{\centering}m{\dimexpr 5.93in+8\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Fraud\ incidence\ by\ currency}}}}} \\
+
+\noalign{\global\arrayrulewidth 0pt}\arrayrulecolor[HTML]{000000}
+
+\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}-}
+
+
+
+\multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\centering}m{\dimexpr 0.9in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Currency}}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\centering}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Fraud\ count}}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\centering}m{\dimexpr 1.33in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Total\ fraud\ loss}}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\centering}m{\dimexpr 1.56in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Average\ fraud\ loss}}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\centering}m{\dimexpr 1.03in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{\ Fraud\ rate}}}}} \\
+
+\noalign{\global\arrayrulewidth 0pt}\arrayrulecolor[HTML]{000000}
+
+\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}-}\endfirsthead 
+
+\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}-}
+
+\multicolumn{5}{>{\centering}m{\dimexpr 5.93in+8\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Fraud\ incidence\ by\ currency}}}}} \\
+
+\noalign{\global\arrayrulewidth 0pt}\arrayrulecolor[HTML]{000000}
+
+\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}-}
+
+
+
+\multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\centering}m{\dimexpr 0.9in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Currency}}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\centering}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Fraud\ count}}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\centering}m{\dimexpr 1.33in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Total\ fraud\ loss}}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\centering}m{\dimexpr 1.56in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Average\ fraud\ loss}}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\centering}m{\dimexpr 1.03in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{\ Fraud\ rate}}}}} \\
+
+\noalign{\global\arrayrulewidth 0pt}\arrayrulecolor[HTML]{000000}
+
+\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}-}\endhead
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.9in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{088F8F}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{EUR}}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{088F8F}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{20}}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 1.33in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{088F8F}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{1,183.28}}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 1.56in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{088F8F}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 59.2}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 1.03in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{088F8F}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{1.5}}}}} \\
+
+\noalign{\global\arrayrulewidth 0pt}\arrayrulecolor[HTML]{000000}
+
+
+
+
+
+\multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\raggedright}m{\dimexpr 0.9in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} GBP}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\centering}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 4}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\centering}m{\dimexpr 1.33in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 428.74}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\centering}m{\dimexpr 1.56in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 107.2}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\centering}m{\dimexpr 1.03in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0.3}}}} \\
+
+\noalign{\global\arrayrulewidth 0pt}\arrayrulecolor[HTML]{000000}
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 0.9in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} USD}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 1.33in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 72.84}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 1.56in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 72.8}}}} & \multicolumn{1}{>{\centering}m{\dimexpr 1.03in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0.1}}}} \\
+
+\noalign{\global\arrayrulewidth 0pt}\arrayrulecolor[HTML]{000000}
+
+\hhline{>{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}->{\arrayrulecolor[HTML]{666666}\global\arrayrulewidth=1.5pt}-}
+
+
+
+\end{longtable*}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
+
+\subsubsection{(3) Daily fraud rate}\label{daily-fraud-rate}
+
+What is the daily fraud rate?
+
+One or two cases of fraud incidence per day are typical, with three
+cases on a single day being an outlier.'' Fraud incidence in a given
+month ranges between one and two per day with three being an outlier.
+
+\pandocbounded{\includegraphics[keepaspectratio]{Fraud-transaction-report_files/figure-pdf/Fraud-rate-by-daily-period-1.pdf}}
+
+\subsection{Customer risk analysis}\label{customer-risk-analysis}
+
+\subsubsection{(4) Customer age and risk}\label{customer-age-and-risk}
+
+Which customer age groups have the highest incidence of fraud? Customer
+risk analysis: Fraud incidence does not appear to vary substantially by
+customer age. Customers across all age groups appear to be similarly
+likely to experience transaction fraud.
+
+The three largest fraudulent transactions by transaction value involved
+card payments. However, further analysis is required to determine
+whether card payments are more susceptible to fraud than other payment
+methods.
+
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
+
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
+
+\setlength{\tabcolsep}{2pt}
+
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable*}[c]{|p{1.24in}|p{1.10in}}
+
+
+
+\ascline{1.5pt}{666666}{1-2}
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Customer\ age}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Fraud\ count}}}} \\
+
+\ascline{1.5pt}{666666}{1-2}\endfirsthead 
+
+\ascline{1.5pt}{666666}{1-2}
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Customer\ age}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Fraud\ count}}}} \\
+
+\ascline{1.5pt}{666666}{1-2}\endhead
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 79}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 78}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 77}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 73}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 68}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 65}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 64}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 62}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 59}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 56}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 55}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 54}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 49}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 42}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 2}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 41}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 36}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 34}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 28}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 26}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 2}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 25}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 24}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 21}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 1.24in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 19}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} \\
+
+\ascline{1.5pt}{666666}{1-2}
+
+
+
+\end{longtable*}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
+
+\subsubsection{(5) Vip status and risk}\label{vip-status-and-risk}
+
+Are VIP customers more or less likely to experience fraud than non-VIP
+customers?
+
+No transactions involving VIP customers were identified as fraudulent;
+all fraudulent transactions involved non-VIP customers.
+
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
+
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
+
+\setlength{\tabcolsep}{2pt}
+
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable*}[c]{|p{0.96in}|p{0.87in}|p{1.10in}|p{1.33in}}
+
+
+
+\ascline{1.5pt}{666666}{1-4}
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.96in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Vip\ status}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.87in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} currency}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Fraud\ count}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.33in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Total\ fraud\ loss}}}} \\
+
+\ascline{1.5pt}{666666}{1-4}\endfirsthead 
+
+\ascline{1.5pt}{666666}{1-4}
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.96in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Vip\ status}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.87in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} currency}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Fraud\ count}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.33in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Total\ fraud\ loss}}}} \\
+
+\ascline{1.5pt}{666666}{1-4}\endhead
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.96in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.87in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} EUR}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 20}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.33in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1,183.28}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.96in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.87in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} GBP}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 4}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.33in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 428.74}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedleft}m{\dimexpr 0.96in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 0}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.87in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} USD}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.33in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 72.84}}}} \\
+
+\ascline{1.5pt}{666666}{1-4}
+
+
+
+\end{longtable*}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
+
+\subsubsection{(6) Customer tenure and
+risk}\label{customer-tenure-and-risk}
+
+Is customer tenure associated with a lower risk of fraud? Fraud
+incidence appears to vary by customer tenure. Customers with tenure
+below the average are more likely to have experienced fraud.
+
+Specifically, 60\% of customers with shorter tenure were victims of
+fraud, compared with 40\% of customers with longer tenure.
+
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
+
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
+
+\setlength{\tabcolsep}{2pt}
+
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable*}[c]{|p{1.40in}|p{1.10in}|p{0.99in}}
+
+
+
+\ascline{1.5pt}{666666}{1-3}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.4in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Tenure\ category}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Fraud\ count}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.99in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Proportion}}}} \\
+
+\ascline{0.5pt}{000000}{1-3}\endfirsthead 
+
+\ascline{1.5pt}{666666}{1-3}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.4in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Tenure\ category}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Fraud\ count}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.99in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Proportion}}}} \\
+
+\ascline{0.5pt}{000000}{1-3}\endhead
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.4in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{088F8F}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Short\ tenure}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{088F8F}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 15}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.99in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{088F8F}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 60\%}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.4in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Long\ tenure}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 10}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.99in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 40\%}}}} \\
+
+\ascline{1.5pt}{666666}{1-3}
+
+
+
+\end{longtable*}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
+
+\subsubsection{(7) Customers exposure
+profile?}\label{customers-exposure-profile}
+
+Which five customers experienced the highest fraud losses? It is also
+evident that the highest-value fraud involved card payments. Does this
+suggest that card payments are more susceptible to fraud?
+
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
+
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
+
+\setlength{\tabcolsep}{2pt}
+
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable*}[c]{|p{1.19in}|p{1.30in}|p{0.86in}|p{0.96in}|p{1.08in}|p{0.92in}|p{0.79in}}
+
+
+
+\hhline{>{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=1pt}-}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.19in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Customer\ ID}}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.3in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Customer\ age}}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.86in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Amount}}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.96in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Currency}}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.08in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Channel}}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.92in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Payment}}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.79in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Tenure}}}}} \\
+
+\noalign{\global\arrayrulewidth 0pt}\arrayrulecolor[HTML]{000000}
+
+\hhline{>{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=0.5pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=0.5pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=0.5pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=0.5pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=0.5pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=0.5pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=0.5pt}-}\endfirsthead 
+
+\hhline{>{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=1pt}-}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.19in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Customer\ ID}}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.3in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Customer\ age}}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.86in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Amount}}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.96in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Currency}}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.08in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Channel}}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.92in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Payment}}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.79in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} \textbf{Tenure}}}}} \\
+
+\noalign{\global\arrayrulewidth 0pt}\arrayrulecolor[HTML]{000000}
+
+\hhline{>{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=0.5pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=0.5pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=0.5pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=0.5pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=0.5pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=0.5pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=0.5pt}-}\endhead
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.19in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{088F8F}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} C000804}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.3in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{088F8F}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 24}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.86in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{088F8F}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 216.80}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.96in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{088F8F}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} EUR}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.08in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{088F8F}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} mobile\_app}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.92in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{088F8F}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} card}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.79in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{088F8F}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 3,378}}}} \\
+
+\noalign{\global\arrayrulewidth 0pt}\arrayrulecolor[HTML]{000000}
+
+
+
+
+
+\multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\raggedright}m{\dimexpr 1.19in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} C000581}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\raggedleft}m{\dimexpr 1.3in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 59}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\raggedleft}m{\dimexpr 0.86in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 193.91}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\raggedright}m{\dimexpr 0.96in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} GBP}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\raggedright}m{\dimexpr 1.08in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} web}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\raggedright}m{\dimexpr 0.92in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} card}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\raggedleft}m{\dimexpr 0.79in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 607}}}} \\
+
+\noalign{\global\arrayrulewidth 0pt}\arrayrulecolor[HTML]{000000}
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.19in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} C001866}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.3in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 77}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.86in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 118.64}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.96in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} GBP}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.08in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} web}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.92in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} card}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.79in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 1,620}}}} \\
+
+\noalign{\global\arrayrulewidth 0pt}\arrayrulecolor[HTML]{000000}
+
+
+
+
+
+\multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\raggedright}m{\dimexpr 1.19in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} C001576}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\raggedleft}m{\dimexpr 1.3in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 42}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\raggedleft}m{\dimexpr 0.86in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 118.49}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\raggedright}m{\dimexpr 0.96in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} EUR}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\raggedright}m{\dimexpr 1.08in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} pos}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\raggedright}m{\dimexpr 0.92in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} card}}}} & \multicolumn{1}{>{\cellcolor[HTML]{D3D3D3}\raggedleft}m{\dimexpr 0.79in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 671}}}} \\
+
+\noalign{\global\arrayrulewidth 0pt}\arrayrulecolor[HTML]{000000}
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.19in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} C001779}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.3in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 54}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.86in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 103.16}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.96in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} EUR}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.08in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} web}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.92in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} card}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 0.79in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 772}}}} \\
+
+\noalign{\global\arrayrulewidth 0pt}\arrayrulecolor[HTML]{000000}
+
+\hhline{>{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=1pt}->{\arrayrulecolor[HTML]{000000}\global\arrayrulewidth=1pt}-}
+
+
+
+\end{longtable*}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
+
+\#\# Digital properties and fraud incidence: \#\#\# (8) Payment methods
+and risk? Which payment methods have the highest incidence of fraud?
+
+Card payment transactions recorded the highest fraud.
+
+\pandocbounded{\includegraphics[keepaspectratio]{Fraud-transaction-report_files/figure-pdf/Payment-methods-and-risk-1.pdf}}
+
+\subsubsection{(9) Transactions channels
+risk?}\label{transactions-channels-risk}
+
+Which transactions channels have the highest fraud rates? Web channel
+transations reported the highest fraud.
+
+\pandocbounded{\includegraphics[keepaspectratio]{Fraud-transaction-report_files/figure-pdf/Transaction-channel-and-risk-1.pdf}}
+
+\subsection{Geographic locations and fraud
+patterns}\label{geographic-locations-and-fraud-patterns}
+
+\subsubsection{(10) Cross-border transactions and fraud
+patterns}\label{cross-border-transactions-and-fraud-patterns}
+
+Are cross-border transactions riskier? First what are cross-border
+transactions? I defined them as those where the customer's ip\_country,
+billing\_country, and shipping\_country differ.
+
+The majority of fraudulent transactions (88\%) are cross-border
+transactions. These are transactions in which the IP country differs
+from the billing country and the billing country differs from the
+shipping country.
+
+\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}
+
+\global\setlength{\Oldtabcolsep}{\tabcolsep}
+
+\setlength{\tabcolsep}{2pt}
+
+\renewcommand*{\arraystretch}{1.5}
+
+
+
+\providecommand{\ascline}[3]{\noalign{\global\arrayrulewidth #1}\arrayrulecolor[HTML]{#2}\cline{#3}}
+
+\begin{longtable*}[c]{|p{1.02in}|p{1.16in}|p{1.10in}|p{0.65in}}
+
+
+
+\ascline{1.5pt}{666666}{1-4}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.02in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Status}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.16in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Nature}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Fraud\ count}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.65in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Prop.}}}} \\
+
+\ascline{1.5pt}{666666}{1-4}\endfirsthead 
+
+\ascline{1.5pt}{666666}{1-4}
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.02in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Status}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.16in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Nature}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Fraud\ count}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.65in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Prop.}}}} \\
+
+\ascline{1.5pt}{666666}{1-4}\endhead
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.02in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{00978A}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Fraudulent}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.16in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{00978A}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} cross\ border}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{00978A}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 22}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.65in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{00978A}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 88\%}}}} \\
+
+
+
+
+
+\multicolumn{1}{>{\raggedright}m{\dimexpr 1.02in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} Fraudulent}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 1.16in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} within\ border}}}} & \multicolumn{1}{>{\raggedleft}m{\dimexpr 1.1in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 3}}}} & \multicolumn{1}{>{\raggedright}m{\dimexpr 0.65in+0\tabcolsep}}{\advance\leftskip by 5.0pt\relax \advance\rightskip by 5.0pt\relax \textcolor[HTML]{000000}{\fontsize{11}{11}\selectfont{{\fontspec{Arial} 12\%}}}} \\
+
+\ascline{1.5pt}{666666}{1-4}
+
+
+
+\end{longtable*}
+
+
+
+\arrayrulecolor[HTML]{000000}
+
+\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}
+
+\global\setlength{\tabcolsep}{\Oldtabcolsep}
+
+\renewcommand*{\arraystretch}{1}
+
+\subsubsection{(11) Billing destination and
+risk}\label{billing-destination-and-risk}
+
+Which are the top illing countries for fraudulent transaction?
+
+\pandocbounded{\includegraphics[keepaspectratio]{Fraud-transaction-report_files/figure-pdf/Cross-border-transactions-and-fraud-incidence-1.pdf}}
+
+\subsection{Merchant Risk Analysis}\label{merchant-risk-analysis}
+
+\subsubsection{(12) Fraud incidence and merchant
+risk}\label{fraud-incidence-and-merchant-risk}
+
+Does fraud incidence vary by merchant risk score?
+
+Fraudulent transactions are common with high-risk merchants relative to
+non-fraudulent ones than their low-risk counter parts.
+
+\pandocbounded{\includegraphics[keepaspectratio]{Fraud-transaction-report_files/figure-pdf/Merchant-risk-scores-and-fraud-incidence-1.pdf}}
+
+\subsubsection{(13) Merchant categories and
+risk.}\label{merchant-categories-and-risk.}
+
+Which merchant categories have the highest fraud rates?
+
+\pandocbounded{\includegraphics[keepaspectratio]{Fraud-transaction-report_files/figure-pdf/plot-chart-1.pdf}}
+
+\section{Conclusion}\label{conclusion}
+
+EssanPay recorded an overall fraud rate of 2\% per month, with fraud
+incidence varying by customer tenure, transaction channel, and payment
+method. Merchants also experienced different levels of fraud exposure,
+with those classified as high-risk recording greater fraud losses.
+Furthermore, cross-border transactions were generally more vulnerable to
+fraud, while Britain and Ireland recorded higher fraud losses than other
+countries..
+
+
+
+
+\end{document}

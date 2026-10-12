@@ -40,9 +40,13 @@ data_fraud_transactions <- read_rds(here("data/fraud_transactions_cleaned.rds"))
 ```
 
 # Introduction.
-Situation
-Complication 
-Quetsion
+EssanPay Co. (EP) is a digital payment service provider that processes card payments and digital wallet transactions for e-commerce businesses. These businesses offer a wide range of products through multiple online merchants and retailers operating across several markets. Customers can conveniently make purchases through the retailers’ digital channels.
+
+Although EP is experiencing rapid growth in online and mobile transactions, it faces a significant challenge: fraudulent transactions. While the company maintains records of these incidents, it does not yet have a clear understanding of the prevalence and distribution of fraud risks across its customer and merchant base.
+
+The board has raised several questions to better understand the company’s exposure to transaction fraud and has engaged me as a consultant to analyse the available transaction data and provide evidence-based insights into its fraud exposure.
+
+The following sections present insights from my data analysis that address the board’s questions.
 
 ## Variables and their values.
 This will give an indication of the level of variation in each variable. This also may provide insights that will guide the focus of the analysis.
@@ -112,17 +116,19 @@ data_fraud_transactions |>
 
 
 # Thirteen (13) Business Questions --------------------------------------------------------------------------
-In this section, I expored some business-related questions, provided evidence-based answers and explained their implications for business performance and decision-making. 
+In this section, I expored some business-related questions, provided evidence-based answers to them, and explained their implications for company's business performance and decision-making. 
 
 ## Fraud rate and losses.
 
 ### (1) Total fraudulent transaction
 What proportion of total transactions are fraudulent?
+
 The overall fraud rate for the month is about 2% of the total transaction. Though this varies vary by currency, with EUR recording the highest fraud rate at 1.5%, compared with GBP and USD.
 
 EUR accounted for the majority of fraudulent transactions, with an average fraudulent transaction value of approximately EUR 60.
 The total value of fraudulent transactions was approximately 1,200 EUR, 429 GBP, and 73 USD for EUR, GBP, and USD transactions, respectively.
 ```{r}
+#| label: Fraud-rate
 # (1) What proportion of total transactions are fraudulent?
 
 # Proportion of fraudulent transactions.
@@ -141,7 +147,7 @@ data_fraud_transactions |>
 ### (2) Fraud incidence by currency
 Are there differences in  total fraud rate and losses reported by currency?
 ```{r}
-
+#| label: Fraud-incidence-risk
 # (2) What percentage of transactions are fraudulent?
 # What is the total financial exposure to fraud (amount)?
 # Are there differences in  total fraud rate and losses reported by currency?
@@ -185,13 +191,13 @@ data_fraud_transactions |>
 ### (3) Daily fraud rate
 What is the daily fraud rate?
 ```{r}
-# | echo: false
+#| label: Daily-fraud-rate
 # Fraud incidence and trend
-# Set up variables for plot title
-plot_title_fraud_incidence_1 <- "one"
-plot_title_fraud_incidence_2 <- "two"
+# Set up variables to be used in the plot title
+plot_title_fraud_incidence_1 <- "one"    
+plot_title_fraud_incidence_2 <- "two" # Both of these would be used in the dynamic plot title below
 
-# Dynamic plot title
+# Create a dynamic plot title
 plot_title_fraud_incidence <- marquee_glue(
   "On days when fraud occurs,  {.#088F8F **{plot_title_fraud_incidence_1}** } or {.#088F8F **{plot_title_fraud_incidence_2 }** } cases are typical."
 )
@@ -200,9 +206,10 @@ plot_title_fraud_incidence <- marquee_glue(
 
 One or two cases of fraud incidence per day are typical, with three cases on a single day being an outlier."
 Fraud incidence in a given month ranges between one and two per day with three being an outlier.
+
 ```{r}
 #| label: Fraud-rate-by-daily-period
-#| echo: false 
+
 # Plot the chart
 data_fraud_transactions |>
   mutate(
@@ -271,18 +278,17 @@ data_fraud_transactions |>
       margin = NULL
     ),
     plot.title = element_marquee(
-      width = 1,
+      #width = 1,
       size = 16,
-      vjust = 1,
-      margin = NULL,
-      lineheight = 1,
+      vjust = 0,
+      margin = NULL, 
+      # lineheight = 1,
     ),
     plot.subtitle = element_marquee(
-      width = 1,
       size = 13,
       vjust = 1,
       margin = NULL,
-      lineheight = 1
+      #lineheight = 1
     ),
     plot.title.position = "plot"
   )
@@ -299,7 +305,7 @@ Fraud incidence does not appear to vary substantially by customer age. Customers
 
 The three largest fraudulent transactions by transaction value involved card payments. However, further analysis is required to determine whether card payments are more susceptible to fraud than other payment methods.
 ```{r}
-#| echo: false
+#| label: Customer-age-and-risk
 # (4) Which customer age groups have the highest incidence of fraud?
 data_fraud_transactions |>
   filter(actual_fraud == "Fraudulent") |>
@@ -353,7 +359,7 @@ Fraud incidence appears to vary by customer tenure. Customers with tenure below 
 Specifically, 60% of customers with shorter tenure were victims of fraud, compared with 40% of customers with longer tenure.
 ```{r}
 #| Label: customer-tenure-and-fraud-experience
-#| echo: false
+
 # (6) Is customer tenure associated with a lower risk of fraud?
 average_tenure <- mean(data_fraud_transactions$customer_tenure_days)
 
@@ -396,7 +402,6 @@ data_fraud_transactions |>
 # Specifically, 60% of customers with shorter tenure were victims of fraud, compared with 40% of customers with longer tenure.
 
 ```
-
 
 ###  (7) Customers exposure profile?
 Which five customers experienced the highest fraud losses?
@@ -454,6 +459,7 @@ Which payment methods have the highest incidence of fraud?
 
 Card payment transactions recorded the highest fraud.
 ```{r}
+#| label: Payment-methods-and-risk
 # Set up plot title variables.
 plot_title_variable_payment_method <- "Card"
 plot_title_payment_method <- marquee_glue(
@@ -544,10 +550,11 @@ data_fraud_transactions |>
 Which transactions channels have the highest fraud rates?
  Web channel transations reported the highest fraud.
 ```{r}
+#| label: Transaction-channel-and-risk
 # (9) Which transactions channels have the highest fraud rates?
 # Set up the plot title variables
 
-plot_title_variable_channel <- "Web"
+plot_title_variable_channel <- "Web"    # variable for dynamic title below
 plot_title_channel <- marquee_glue(
   "{.#088F8F **{plot_title_variable_channel}** } transactions channel recorded the highest fraud cases."
 )
@@ -591,22 +598,22 @@ data_fraud_transactions |>
   ) +
   theme_minimal() +
   labs(
-    title = plot_title_channel ,
-    subtitle = ggtext::element_textbox_simple("Making it the most vulnerable transaction channel.")
+    title = plot_title_channel,
+    subtitle = "Making it the most vulnerable transaction channel."
   ) +
   theme(
     plot.title = element_marquee(
-      width = 1,
+     # width = 1,
       size = 16,
-      vjust = 1,
+      vjust = 0,
       margin = NULL,
-      lineheight = 1
+     # lineheight = 1
     ),
     plot.subtitle = element_text(
       size = 13,
-      vjust = 1.5,
+      vjust = 1,
       margin = margin(0, 0, 12, 0),  # I am not sure if this is woring!
-      lineheight = 1.5
+      # lineheight = 1.5
     ),
     plot.title.position = "plot",
     panel.grid.minor.y = element_blank(),
@@ -629,11 +636,8 @@ data_fraud_transactions |>
       size = 13,
       vjust = 2,
       hjust = 0.4
-    ),
-    axis.line.y = element_line(
-        linewidth = 0.5,
-        color = "grey80"
     )
+    
   ) # Web channel transations reported the highest fraud.
 ```
 
@@ -647,8 +651,7 @@ ip_country, billing_country, and shipping_country differ.
 The majority of fraudulent transactions (88%) are cross-border transactions.
 These are transactions in which the IP country differs from the billing country and the billing country differs from the shipping country.
 ```{r}
-
-
+#| label: Cross-border fraudulent transaction
 # I defined a cross-border transaction as one where the ip_country, billing_country, and shipping_country differ.
 
 data_fraud_transactions_cross_border <- data_fraud_transactions |>
@@ -707,7 +710,7 @@ plot_title <- marquee_glue(
 
 ```{r}
 #| label: Cross-border-transactions-and-fraud-incidence
-#| echo: false
+
 data_fraud_transactions_cross_border |>
   filter(actual_fraud == "Fraudulent") |>
   summarise(
@@ -800,7 +803,7 @@ Does fraud incidence vary by merchant risk score?
 
 ```{r}
 #| label: plot-title-variable-merchant-risk-score
-#| echo: false
+
 plot_title_boxplot_variabe <- "Fraudulent transactions"
 plot_title_box_plot <- marquee_glue(
   "{.#6cabdd **{plot_title_boxplot_variabe}** }  are more prevalent with high-risk merchants."
@@ -811,7 +814,7 @@ plot_title_box_plot <- marquee_glue(
 Fraudulent transactions are common with high-risk merchants  relative to non-fraudulent ones than their low-risk counter parts.
 ```{r}
 #| label: Merchant-risk-scores-and-fraud-incidence
-#| echo: false
+
 # Plot chart
 data_fraud_transactions |>
   ggplot(aes(x = actual_fraud, y = merchant_riskscore, color = actual_fraud)) +
@@ -892,7 +895,6 @@ plot_title_merchant_category <- marquee_glue(
 
 ```{r}
 #| label: plot-chart
-#| echo: false
 # Plot chart
 
 data_fraud_transactions |>
@@ -954,7 +956,7 @@ data_fraud_transactions |>
     axis.text.y = element_text(
       face = "bold",
       size = 12,
-      vjust = 1,
+      vjust = 0,
       hjust = 1,
       margin = NULL
     ),
@@ -963,7 +965,7 @@ data_fraud_transactions |>
     axis.title.y = element_text(
       face = "plain",
       size = 13,
-      vjust = 2,
+      vjust = 1,
       hjust = 0.5
     ),
     plot.title = element_marquee(
@@ -984,3 +986,5 @@ data_fraud_transactions |>
 
 ```
 
+# Conclusion
+EssanPay recorded an overall fraud rate of 2% per month, with fraud incidence varying by customer tenure, transaction channel, and payment method. Merchants also experienced different levels of fraud exposure, with those classified as high-risk recording greater fraud losses. Furthermore, cross-border transactions were generally more vulnerable to fraud, while Britain and Ireland recorded higher fraud losses than other countries..
