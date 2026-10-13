@@ -15,11 +15,6 @@ execute:
   echo: false
   message: false
   warning: false
-
-
-
-
-  
 ---
 
 
@@ -29,14 +24,13 @@ execute:
 library(tidyverse)
 library(ggthemes)
 library(janitor)
-library(hrbrthemes)
 library(scales)
 library(marquee)
 library(ggrepel)
 library(flextable)
 library(officer) # Work with flexatable
 library(here)
-library(ggtext)
+
 ```
 
 
@@ -57,9 +51,9 @@ The following sections present insights from my data analysis that address the b
 # Data overview
 
 ## Variables and their values
-This will give an indication of the level of variation in each variable. This also may provide insights that will guide the focus of the analysis.
+Analysing the variables by their unique values will give an indication of the level of variation in each variable. This also may provide insights that will guide the direction of the analysis.
 
-Customer ID has 1092 unique values. It may generally not be useful to analyse this variable except for very specific purpose.
+Among the among the selected variable of interest, Customer ID has the highest unique values  of 1092. Because these values are not personally identfiable it may generally not be useful to analyse this variable except for very specific purpose.
 ```{r}
 #| label: tbl-check-variation-in-column-values
 
@@ -93,7 +87,7 @@ data_fraud_transactions |>
 ```
 
 ## Missing values 
-The device_fingerprint has the highest number of missing values, followed by the merchant risk scores. We may not be able to input risk scores because they are externally determined. 
+The device_fingerprint has the highest number of missing values of 185 , followed by the merchant riskscores 97. We may not be able to replace these  missing values because these variables are externally determined. 
 
 ```{r}
 #| label: tbl-missing-values
@@ -120,7 +114,7 @@ data_fraud_transactions |>
 
 
 # Business Questions --------------------------------------------------------------------------
-In this section, I expored some business-related questions, provided evidence-based answers to them, and explained their implications for company's business performance and decision-making. 
+In this section, I expored some business-related questions, provided evidence-based answers to them. In the future, I hope to provide further insights about their implications for EP's business performance and decision-making. 
 
 ## Fraud rate and losses
 
@@ -463,8 +457,7 @@ data_fraud_transactions |>
 Card payment transactions recorded the highest fraud count.
 
 ```{r}
-#| label: fig-payment-methods-and-risk
-#| Set up plot title variables.
+#| label: Set-up-plot-title-variables-for-fraud-and-payment-method-chart.
 plot_title_variable_payment_method <- "Card"
 plot_title_payment_method <- marquee_glue(
   "{.#088F8F **{plot_title_variable_payment_method}** } payment transactions recorded the highest fraud cases."
