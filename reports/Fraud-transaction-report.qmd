@@ -144,6 +144,8 @@ data_fraud_transactions |>
 
 ### Fraud incidence by currency
 **Are there differences in  total fraud rate and losses reported by currency?**
+
+Of the overall fraud rate of 2%, EUR accounted for 1.6 percentage points, while GBP and USD accounted for the remaining 0.4 percentage points combined. 
 ```{r}
 #| label: tbl-fraud-incidence-risk
 
@@ -799,7 +801,7 @@ data_fraud_transactions_cross_border |>
     plot.title.position = "plot"
   ) +
   scale_x_continuous(
-    labels = percent_format() # This formats the x-axis text to % but I decided to leave the axis not visible.
+    labels = percent_format() # This formats the x-axis text to % but I decided to leave the axis non-visible.
   )
 ```
 
@@ -903,8 +905,8 @@ plot_title_merchant_category <- marquee_glue(
 ```
 
 ```{r}
-#| label: fig-plot-chart
-# Plot chart
+#| label: fig-plot-chart-fraud-count-by-merchant-category
+
 
 data_fraud_transactions |>
   filter(actual_fraud == "Fraudulent") |>
