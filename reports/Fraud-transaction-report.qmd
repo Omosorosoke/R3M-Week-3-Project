@@ -25,6 +25,7 @@ execute:
 
 ```{r}
 # | label: set-up
+#| include: false
 library(tidyverse)
 library(ggthemes)
 library(janitor)
@@ -92,7 +93,7 @@ data_fraud_transactions |>
 ```
 
 ## Missing values 
-The device_fingerprint has the highest number of missing values, followed by the merchant risk scores.
+The device_fingerprint has the highest number of missing values, followed by the merchant risk scores. We may not be able to input risk scores because they are externally determined. 
 
 ```{r}
 #| label: tbl-missing-values
@@ -124,7 +125,7 @@ In this section, I expored some business-related questions, provided evidence-ba
 ## Fraud rate and losses
 
 ### Total fraudulent transaction
-What proportion of total transactions are fraudulent?
+**What proportion of total transactions are fraudulent?**
 
 The overall fraud rate for the month is about 2% of the total transaction. Though this varies vary by currency, with EUR recording the highest fraud rate at 1.5%, compared with GBP and USD.
 
@@ -148,7 +149,7 @@ data_fraud_transactions |>
 ```
 
 ### Fraud incidence by currency
-Are there differences in  total fraud rate and losses reported by currency?
+**Are there differences in  total fraud rate and losses reported by currency?**
 ```{r}
 #| label: tbl-fraud-incidence-risk
 
@@ -187,7 +188,9 @@ data_fraud_transactions |>
 
 
 ### Daily fraud rate
-What is the daily fraud rate?
+**What is the daily fraud rate?**
+
+One or two cases of fraud incidence per day are typical, with three cases on a single day being a peak-day occurence.
 ```{r}
 #| label: Daily-fraud-rate
 # Fraud incidence and trend
@@ -202,10 +205,11 @@ plot_title_fraud_incidence <- marquee_glue(
 
 ```
 
-One or two cases of fraud incidence per day are typical, with three cases on a single day being a peak-day occurence.
+
 
 ```{r}
 #| label: fig-fraud-rate-by-daily-period
+#| fig-alt: "A vertical column chart of fraud count per day. One or two counts are common per day"
 
 # Plot the chart
 data_fraud_transactions |>
@@ -260,7 +264,7 @@ data_fraud_transactions |>
       linetype = 0.3
     ),
     axis.title.y = element_text(
-      size = 13,
+      size = 11,
       vjust = 1.8,
       hjust = 0.5,
     ),
@@ -295,7 +299,8 @@ data_fraud_transactions |>
 
 ##  Customer risk analysis
 ### Customer age and risk
-Which customer age groups have the highest incidence of fraud?
+**Which customer age groups have the highest incidence of fraud?**
+
 Customer risk analysis: 
 Fraud incidence does not appear to vary substantially by customer age. Customers across all age groups appear to be similarly likely to experience transaction fraud.
 
@@ -306,7 +311,7 @@ The three largest fraudulent transactions by transaction value involved card pay
 data_fraud_transactions |>
   filter(actual_fraud == "Fraudulent") |>
   count(customer_age, sort = TRUE) |>
-  arrange(desc(customer_age)) |> 
+  arrange(desc(n)) |> 
   flextable() |> 
   set_header_labels(values =
 c(customer_age = "Customer age",
@@ -318,14 +323,14 @@ n = "Fraud count"
 
 ### Vip status and risk
 
- Are VIP customers more or less likely to experience fraud than non-VIP customers?
+ **Are VIP customers more or less likely to experience fraud than non-VIP customers?**
 
 No transactions involving VIP customers were identified as fraudulent; all fraudulent transactions involved non-VIP customers.
 
 ```{r}
 #| label: tbl-VIP-customer-and-fraud-experince
 #| echo: false
-# Are VIP customers more or less likely to experience fraud than non-VIP customers?
+
 data_fraud_transactions |>
   filter(
     actual_fraud == "Fraudulent"
@@ -348,14 +353,16 @@ data_fraud_transactions |>
 
 
 ### Customer tenure and risk
- Is customer tenure associated with a lower risk of fraud?
+**Is customer tenure associated with a lower risk of fraud?**
+
 Fraud incidence appears to vary by customer tenure. Customers with tenure below the average are more likely to have experienced fraud.
 
 Specifically, 60% of the fraud cases were recorded by customers with shorter tenure, compared with 40% by those with longer tenure.
 ```{r}
-#| label: fig-customer-tenure-and-fraud-experience
+#| label: tbl-customer-tenure-and-fraud-experience
+#| tbl-cap: "Shorter tenure days are associated with higher fraud incidence"
 
-# (6) Is customer tenure associated with a lower risk of fraud?
+
 average_tenure <- mean(data_fraud_transactions$customer_tenure_days)
 
 data_fraud_transactions |>
@@ -379,14 +386,14 @@ data_fraud_transactions |>
       prop = "Proportion"
     )
   ) |>
-  set_caption(
-    caption = as_paragraph(
-      as_chunk(
-        "Shorter tenure days are associated with higher fraud incidence",
-        props = fp_text_default(font.size = 12, bold = TRUE)
-      )
-    )
-  ) |>
+  # set_caption(
+  #   caption = as_paragraph(
+  #     as_chunk(
+  #       "Shorter tenure days are associated with higher fraud incidence",
+  #       props = fp_text_default(font.size = 12, bold = TRUE)
+  #     )
+  #   )
+  # ) |>
   autofit() |>
   hline(
     i = 1,
@@ -398,12 +405,14 @@ data_fraud_transactions |>
 ```
 
 ### Customers exposure profile
-Which five customers experienced the highest fraud losses?
+**Which five customers experienced the highest fraud losses?**
+
 It is also evident that the highest-value fraud involved card payments. Does this suggest that card payments are more susceptible to fraud?
 
 ```{r}
 #| label: tbl-customers-and-fraud-incidence
-#  Which five customers experienced the highest fraud losses?
+#| tbl-cap: "The single highest loss by a customer is EUR 216.80 "
+
 data_fraud_transactions |>
   filter(actual_fraud == "Fraudulent") |>
   slice_max(order_by = amount, n = 5) |>
@@ -426,12 +435,12 @@ data_fraud_transactions |>
     payment_method = 'Payment',
     customer_tenure_days = 'Tenure'
   ) |>
-  set_caption(
-    caption = as_paragraph(as_chunk(
-      "The single highest loss by a customer is EUR 216.80 ",
-      props = fp_text_default(font.size = 12, bold = TRUE)
-    ))
-  ) |>
+  # set_caption(
+  #   caption = as_paragraph(as_chunk(
+  #     "The single highest loss by a customer is EUR 216.80 ",
+  #     props = fp_text_default(font.size = 12, bold = TRUE)
+  #   ))
+  # ) |>
   theme_zebra(
     even_body = "#d3d3d337",
     odd_body = "transparent",
@@ -449,17 +458,22 @@ data_fraud_transactions |>
 
 ## Digital properties and fraud incidence: 
 ### Payment methods and risk
-Which payment methods have the highest incidence of fraud?
+**Which payment methods have the highest incidence of fraud?**
 
-Card payment transactions recorded the highest fraud.
+Card payment transactions recorded the highest fraud count.
+
 ```{r}
 #| label: fig-payment-methods-and-risk
-# Set up plot title variables.
+#| Set up plot title variables.
 plot_title_variable_payment_method <- "Card"
 plot_title_payment_method <- marquee_glue(
   "{.#088F8F **{plot_title_variable_payment_method}** } payment transactions recorded the highest fraud cases."
 )
+```
 
+```{r}
+#| label: fig-fraud-count-by-payment-methods.
+#| fig-alt: "A vertical column chart showing the number of fraudulent transactions by customer payment method"
 # Plot fraud incidence chart
 data_fraud_transactions |>
   filter(actual_fraud == "Fraudulent") |>
@@ -528,7 +542,7 @@ data_fraud_transactions |>
     ),
     axis.title.y = element_text(
       face = "plain",
-      size = 13,
+      size = 11,
       vjust = 0.5,
       hjust = 0.5
     ),
@@ -540,11 +554,12 @@ data_fraud_transactions |>
 ```
 
 ### Transactions channels risk
-Which transactions channels have the highest fraud rates?
+**Which transactions channels have the highest fraud rates?**
  Web channel transations reported the highest fraud.
 ```{r}
 #| label: fig-transaction-channel-and-risk
-# (9) Which transactions channels have the highest fraud rates?
+#| fig-alt: "A vertical column chart shows the number of fraudulent transactions by transaction channel. The web platform recorded the highest fraud count."
+
 # Set up the plot title variables
 
 plot_title_variable_channel <- "Web"    # variable for dynamic title below
@@ -625,7 +640,7 @@ data_fraud_transactions |>
     ),
     axis.title.y = element_text(
       face = "plain",
-      size = 13,
+      size = 11,
       vjust = 2,
       hjust = 0.4
     )
@@ -635,16 +650,17 @@ data_fraud_transactions |>
 
 ## Geographic locations and  fraud patterns
 ### Cross-border transactions and  fraud patterns
-Are cross-border transactions riskier?
-First what are cross-border transactions?
-I defined them as those where the customer's 
+**Are cross-border transactions riskier?**
+
+To answer this question, I first defined what cross-border transactions are 
+and then analysed transactions that meet the criteria. I defined them as those where the customer's 
 ip_country, billing_country, and shipping_country differ.
 
 The majority of fraudulent transactions (88%) are cross-border transactions.
 These are transactions in which the IP country differs from the billing country and the billing country differs from the shipping country.
+
 ```{r}
-#| label: tbl-cross-border-fraudulent-transactions
-# I defined a cross-border transaction as one where the ip_country, billing_country, and shipping_country differ.
+#| label: Define-and-create-cross-border-transactions-dataset
 
 data_fraud_transactions_cross_border <- data_fraud_transactions |>
   # create cross_border variable based on the above definition criteria
@@ -657,6 +673,10 @@ data_fraud_transactions_cross_border <- data_fraud_transactions |>
       "check"
     )
   )
+```
+```{r}
+#| label: tbl-cross-border-fraudulent-transactions
+#| tbl-cap: "Majority of fradulent transactions are cross border"
 
 # Determine the proportion of fraudulent transactions that are cross border.
 data_fraud_transactions_cross_border |>
@@ -673,19 +693,21 @@ data_fraud_transactions_cross_border |>
     )
   ) |>
   color(i = 1, part = "body", color = '#00978a') |>
-  set_caption(
-    as_paragraph(
-      as_chunk(
-        "Majority of fradulent transactions are cross border",
-        props = fp_text_default(font.size = 12, bold = TRUE)
-      )
-    )
-  ) |>
+  # set_caption(
+  #   as_paragraph(
+  #     as_chunk(
+  #       "Majority of fradulent transactions are cross border",
+  #       props = fp_text_default(font.size = 12, bold = TRUE)
+  #     )
+  #   )
+  # ) |>
   autofit()
 ```
 
 ### Billing destination and risk
-Which are the top illing countries for fraudulent transaction?
+**Which are the top billing countries for fraudulent transaction?**
+
+Great Britain and Ireland are the billing destinations with highest fraud incidence.
 ```{r}
 #| label: Plot-title
 # variables for the plot title
@@ -702,6 +724,7 @@ plot_title <- marquee_glue(
 
 ```{r}
 #| label: fig-cross-border-transactions-and-fraud-incidence
+#| fig-alt: "A vertical column chart shows the number of fraudulent transactions by billing destination. Great Britain and Ireland jointly accounted for the highest fraud count"
 
 data_fraud_transactions_cross_border |>
   filter(actual_fraud == "Fraudulent") |>
@@ -764,13 +787,13 @@ data_fraud_transactions_cross_border |>
     legend.position = 'none',
     axis.title.y = element_text(
       face = "plain",
-      size = 13,
+      size = 11,
       vjust = 2,
       hjust = 0.5
     ),
     plot.title = element_marquee(
       width = 1,
-      size = 14,
+      size = 13,
       vjust = 0,
       margin = NULL,
       lineheight = 1
@@ -791,11 +814,11 @@ data_fraud_transactions_cross_border |>
 
 ## Merchant risk analyses
 ### Fraud incidence and merchant risk
-Does fraud incidence vary by merchant risk score?
+**Does fraud incidence vary by merchant risk score?**
 
 ```{r}
 #| label: fig-plot-title-variable-merchant-risk-score
-
+#| 
 plot_title_boxplot_variabe <- "Fraudulent transactions"
 plot_title_box_plot <- marquee_glue(
   "{.#6cabdd **{plot_title_boxplot_variabe}** }  are more prevalent with high-risk merchants."
@@ -806,6 +829,7 @@ plot_title_box_plot <- marquee_glue(
 Fraudulent transactions are common with high-risk merchants  relative to non-fraudulent ones than their low-risk counter parts.
 ```{r}
 #| label: fig-merchant-risk-scores-and-fraud-incidence
+#| fig-alt: "A box plot that compares merchant risk scores for legitimate and fraudulent transactions. Merchants with higher risk scores accounted for a greater number of fraudulent transactions."
 
 # Plot chart
 data_fraud_transactions |>
@@ -845,7 +869,7 @@ data_fraud_transactions |>
     legend.position = 'none',
     axis.title.y = element_text(
       face = "plain",
-      size = 13,
+      size = 11,
       vjust = 3,
       hjust = 0.5
     ),
@@ -874,7 +898,7 @@ data_fraud_transactions |>
 
 
 ### Merchant categories and risk
-Which merchant categories have the highest fraud rates?
+**Which merchant categories have the highest fraud rates?**
 ```{r}
 #| label: Set-up-plot-title-variables.
 # set up plot title variables.
@@ -956,7 +980,7 @@ data_fraud_transactions |>
     legend.position = 'none',
     axis.title.y = element_text(
       face = "plain",
-      size = 13,
+      size = 11,
       vjust = 1,
       hjust = 0.5
     ),

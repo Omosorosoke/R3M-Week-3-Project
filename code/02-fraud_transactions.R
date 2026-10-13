@@ -63,14 +63,14 @@ View(data_fraud_transactions)
 
 ### Tweleve (12) Business Questions and their  Analyses -------------------------------------------------
 
-# (1) What proportion of total transactions are fraudulent?
+# (1) *What proportion of total transactions are fraudulent?*
 
 # Proportion of fraudulent transactions.
 data_fraud_transactions |>
   count(actual_fraud) |>
   mutate(fraud_incidence_prop = n * 100 / nrow(data_fraud_transactions)) # The overall fraud rate for the month is about 2% of the total transaction.
 
-# (2) What percentage of transactions are fraudulent?
+# (2) *What percentage of transactions are fraudulent?*
 # What is the total financial exposure to fraud (amount)?
 # Are there differences in  total fraud rate and losses reported by currency?
 
